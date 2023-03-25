@@ -44,3 +44,11 @@ x = 1;
 ```
 
 We have two things here: the constant `1` and the equality relation `x = 1`. For the former, a call to `GetIntegerConstant(1)` gets us the needed constant. Note that this function is not a *create* function because, conceptually, all such constants are already in the system. If you call `GetIntegerConstant(int)` with the same value twice, it will return the same object. If you called `CreateIntegerSymbol("x")` twice, it would return two different objects, representing two different symbols (you can have multiple `x` in a C# program).
+The equality relation is then obtained with a call to `CreateEqualityExpression`. It does not add this equality as a constraint yet, because it could just be an intermediate step in a hain of expressions, and the prover has no way to know that. So we specify that it's a constraint with a call to `Assert`.
+
+```csharp
+var x = CreateIntegerSymbol("x");
+var _1 = GetIntegerConstant(1);
+var equality = CreateEqualityExpression(x, EqualityOperator.Equal, _1);
+equality.Assert();
+```
