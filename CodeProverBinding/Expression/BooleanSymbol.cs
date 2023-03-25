@@ -14,9 +14,7 @@ public class BooleanSymbol : Symbol<IBooleanSort>, IBooleanSymbol
     {
     }
 
-    /// <summary>
-    /// Gets the symbol sort.
-    /// </summary>
+    /// <inheritdoc/>
     public override IBooleanSort Sort { get => CodeProverBinding.Sort.Boolean; }
     ISort ISymbol.Sort { get => Sort; }
 }

@@ -18,9 +18,7 @@ public abstract class SymbolExpression<TSort> : Expression, ISymbolExpression<TS
         Symbol = symbol;
     }
 
-    /// <summary>
-    /// Gets the constant value.
-    /// </summary>
+    /// <inheritdoc/>
     public ISymbol<TSort> Symbol { get; }
     ISymbol ISymbolExpression.Symbol { get => (ISymbol)Symbol; }
 }

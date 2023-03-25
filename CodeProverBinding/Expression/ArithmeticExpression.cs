@@ -52,19 +52,13 @@ public class ArithmeticExpression : Expression, IArithmeticExpression
         });
     }
 
-    /// <summary>
-    /// Gets the left operand.
-    /// </summary>
+    /// <inheritdoc/>
     public IArithmeticExpression LeftOperand { get; }
 
-    /// <summary>
-    /// Gets the operator.
-    /// </summary>
+    /// <inheritdoc/>
     public ArithmeticOperator Operator { get; }
 
-    /// <summary>
-    /// Gets the right operand.
-    /// </summary>
+    /// <inheritdoc/>
     public IArithmeticExpression RightOperand { get; }
 
     internal IArithExprCapsule ArithmeticExpressionZ3 => (IArithExprCapsule)ExpressionZ3;

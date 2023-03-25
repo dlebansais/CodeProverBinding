@@ -34,19 +34,13 @@ public class EqualityExpression : Expression, IEqualityExpression
         });
     }
 
-    /// <summary>
-    /// Gets the left operand.
-    /// </summary>
+    /// <inheritdoc/>
     public IExpression LeftOperand { get; }
 
-    /// <summary>
-    /// Gets the operator.
-    /// </summary>
+    /// <inheritdoc/>
     public EqualityOperator Operator { get; }
 
-    /// <summary>
-    /// Gets the right operand.
-    /// </summary>
+    /// <inheritdoc/>
     public IExpression RightOperand { get; }
 
     internal IBoolExprCapsule BooleanExpressionZ3 => (IBoolExprCapsule)ExpressionZ3;

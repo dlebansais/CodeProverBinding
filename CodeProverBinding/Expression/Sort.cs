@@ -1,7 +1,7 @@
 ﻿namespace CodeProverBinding;
 
 /// <summary>
-/// Represents an sort.
+/// Represents a sort.
 /// </summary>
 public abstract class Sort : ISort
 {

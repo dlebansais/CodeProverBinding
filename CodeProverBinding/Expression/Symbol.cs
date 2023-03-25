@@ -20,13 +20,9 @@ public abstract class Symbol<TSort> : ISymbol<TSort>
         Name = name;
     }
 
-    /// <summary>
-    /// Gets the symbol name.
-    /// </summary>
+    /// <inheritdoc/>
     public string Name { get; }
 
-    /// <summary>
-    /// Gets the symbol sort.
-    /// </summary>
+    /// <inheritdoc/>
     public abstract TSort Sort { get; }
 }

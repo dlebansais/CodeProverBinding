@@ -36,19 +36,13 @@ public class ComparisonExpression : Expression, IComparisonExpression
         });
     }
 
-    /// <summary>
-    /// Gets the left operand.
-    /// </summary>
+    /// <inheritdoc/>
     public IArithmeticExpression LeftOperand { get; }
 
-    /// <summary>
-    /// Gets the operator.
-    /// </summary>
+    /// <inheritdoc/>
     public ComparisonOperator Operator { get; }
 
-    /// <summary>
-    /// Gets the right operand.
-    /// </summary>
+    /// <inheritdoc/>
     public IArithmeticExpression RightOperand { get; }
 
     internal IBoolExprCapsule BooleanExpressionZ3 => (IBoolExprCapsule)ExpressionZ3;

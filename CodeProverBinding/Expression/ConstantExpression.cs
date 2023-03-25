@@ -18,9 +18,7 @@ public abstract class ConstantExpression<TValue> : Expression, IConstantExpressi
         Value = value;
     }
 
-    /// <summary>
-    /// Gets the constant value.
-    /// </summary>
+    /// <inheritdoc/>
     public TValue Value { get; }
     object IConstantExpression.Value { get => Value; }
 }
