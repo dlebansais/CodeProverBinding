@@ -1,6 +1,7 @@
 ﻿namespace CodeProverBinding;
 
 using System;
+using System.Collections.Generic;
 
 /// <summary>
 /// Provides bindings for code provers.
@@ -13,7 +14,10 @@ public partial class Binder
     /// <param name="value">The constant value.</param>
     public IBooleanConstantExpression GetBooleanConstant(bool value)
     {
-        return new BooleanConstantExpression(this, value);
+        if (!ConstantTable.ContainsKey(value))
+            ConstantTable[value] = new BooleanConstantExpression(this, value);
+
+        return (IBooleanConstantExpression)ConstantTable[value];
     }
 
     /// <summary>
@@ -22,7 +26,10 @@ public partial class Binder
     /// <param name="value">The constant value.</param>
     public IIntegerConstantExpression GetIntegerConstant(int value)
     {
-        return new IntegerConstantExpressionInt(this, value);
+        if (!ConstantTable.ContainsKey(value))
+            ConstantTable[value] = new IntegerConstantExpressionInt(this, value);
+
+        return (IIntegerConstantExpression)ConstantTable[value];
     }
 
     /// <summary>
@@ -31,7 +38,10 @@ public partial class Binder
     /// <param name="value">The constant value.</param>
     public IIntegerConstantExpression GetIntegerConstant(long value)
     {
-        return new IntegerConstantExpressionLong(this, value);
+        if (!ConstantTable.ContainsKey(value))
+            ConstantTable[value] = new IntegerConstantExpressionLong(this, value);
+
+        return (IIntegerConstantExpression)ConstantTable[value];
     }
 
     /// <summary>
@@ -40,7 +50,10 @@ public partial class Binder
     /// <param name="value">The constant value.</param>
     public IIntegerConstantExpression GetIntegerConstant(uint value)
     {
-        return new IntegerConstantExpressionUint(this, value);
+        if (!ConstantTable.ContainsKey(value))
+            ConstantTable[value] = new IntegerConstantExpressionUint(this, value);
+
+        return (IIntegerConstantExpression)ConstantTable[value];
     }
 
     /// <summary>
@@ -49,7 +62,10 @@ public partial class Binder
     /// <param name="value">The constant value.</param>
     public IIntegerConstantExpression GetIntegerConstant(ulong value)
     {
-        return new IntegerConstantExpressionUlong(this, value);
+        if (!ConstantTable.ContainsKey(value))
+            ConstantTable[value] = new IntegerConstantExpressionUlong(this, value);
+
+        return (IIntegerConstantExpression)ConstantTable[value];
     }
 
     /// <summary>
@@ -58,7 +74,10 @@ public partial class Binder
     /// <param name="value">The constant value.</param>
     public IFloatingPointConstantExpression GetFloatingPointConstant(double value)
     {
-        return new FloatingPointConstantExpression(this, value);
+        if (!ConstantTable.ContainsKey(value))
+            ConstantTable[value] = new FloatingPointConstantExpression(this, value);
+
+        return (IFloatingPointConstantExpression)ConstantTable[value];
     }
 
     /// <summary>
@@ -178,4 +197,6 @@ public partial class Binder
     {
         return new EqualityExpression(this, leftOperand, @operator, rightOperand);
     }
+
+    private Dictionary<object, IConstantExpression> ConstantTable = new();
 }
