@@ -16,7 +16,7 @@ This library provides an API to translate the source code to create the theorem.
 
 + Types: `bool`, integers (`int`, `uint`, `long` and `ulong`), `double`.
 + Variables.
-+ Operators `+`, `-`, `*`, `/` and the modulo opetator `%` on integers.
++ Operators `+`, `-`, `*`, `/` and the modulo opetator `%` on integers. The `-` unary operator. The `||`, `&&` and `!` logical operators.
 + `if` ... `then` ... `else`.
 
 Loops are not supported yet.

@@ -187,6 +187,27 @@ public partial class Binder
     }
 
     /// <summary>
+    /// Creates a binary logical expression.
+    /// </summary>
+    /// <param name="leftOperand">The left operand.</param>
+    /// <param name="operator">The operator.</param>
+    /// <param name="rightOperand">The right operand.</param>
+    public IBinaryLogicalExpression CreateBinaryLogicalExpression(IBooleanExpression leftOperand, BinaryLogicalOperator @operator, IBooleanExpression rightOperand)
+    {
+        return new BinaryLogicalExpression(this, leftOperand, @operator, rightOperand);
+    }
+
+    /// <summary>
+    /// Creates a unary logical expression.
+    /// </summary>
+    /// <param name="operator">The operator.</param>
+    /// <param name="operand">The right operand.</param>
+    public IUnaryLogicalExpression CreateUnaryLogicalExpression(UnaryLogicalOperator @operator, IBooleanExpression operand)
+    {
+        return new UnaryLogicalExpression(this, @operator, operand);
+    }
+
+    /// <summary>
     /// Creates a comparison expression.
     /// </summary>
     /// <param name="leftOperand">The left operand.</param>
