@@ -13,7 +13,7 @@ public class BooleanSymbolExpression : SymbolExpression<IBooleanSort>, IBooleanS
     public BooleanSymbolExpression(Binder binder, IBooleanSymbol symbol)
         : base(binder, symbol)
     {
-        binder.Binding(Prover.Z3, (ProverContextZ3 context) => { ExpressionZ3 = context.Context.MkBoolConst(((ISymbol)symbol).Name).Encapsulate(); });
+        Binder.Binding(Prover.Z3, (ProverContextZ3 context) => { ExpressionZ3 = context.Context.MkBoolConst(((ISymbol)symbol).Name).Encapsulate(); });
     }
 
     internal IBoolExprCapsule BooleanExpressionZ3 => (IBoolExprCapsule)ExpressionZ3;

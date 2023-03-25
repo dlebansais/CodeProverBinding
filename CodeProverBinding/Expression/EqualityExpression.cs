@@ -22,7 +22,7 @@ public class EqualityExpression : Expression, IEqualityExpression
         Operator = @operator;
         RightOperand = rightOperand;
 
-        binder.Binding(Prover.Z3, (ProverContextZ3 context) =>
+        Binder.Binding(Prover.Z3, (ProverContextZ3 context) =>
         {
             Dictionary<EqualityOperator, Func<IExprCapsule, IExprCapsule, IBoolExprCapsule>> BinaryArithmetic = new()
             {

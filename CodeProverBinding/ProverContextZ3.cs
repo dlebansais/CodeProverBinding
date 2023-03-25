@@ -1,12 +1,13 @@
 ﻿namespace CodeProverBinding;
 
+using System;
 using System.Collections.Generic;
 using Microsoft.Z3;
 
 /// <summary>
 /// Represents a context for the Z3 prover.
 /// </summary>
-public class ProverContextZ3 : IProverContext
+internal partial class ProverContextZ3 : IProverContext, IDisposable
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="ProverContextZ3"/> class.
@@ -15,10 +16,16 @@ public class ProverContextZ3 : IProverContext
     {
         // Need model generation turned on.
         Context = new Context(new Dictionary<string, string>() { { "model", "true" } });
+        Solver = Context.MkSolver();
     }
 
     /// <summary>
     /// Gets the Z3 context.
     /// </summary>
     public Context Context { get; }
+
+    /// <summary>
+    /// Gets the Z3 solver.
+    /// </summary>
+    public Solver Solver { get; }
 }

@@ -15,7 +15,7 @@ public class FloatingPointConstantExpression : ConstantExpression<double>, IFloa
     public FloatingPointConstantExpression(Binder binder, double value)
         : base(binder, value)
     {
-        binder.Binding(Prover.Z3, (ProverContextZ3 context) => { ExpressionZ3 = ((Microsoft.Z3.ArithExpr)context.Context.MkNumeral(value.ToString(CultureInfo.InvariantCulture), context.Context.MkRealSort())).Encapsulate(); });
+        Binder.Binding(Prover.Z3, (ProverContextZ3 context) => { ExpressionZ3 = ((Microsoft.Z3.ArithExpr)context.Context.MkNumeral(value.ToString(CultureInfo.InvariantCulture), context.Context.MkRealSort())).Encapsulate(); });
     }
 
     internal IArithExprCapsule ArithmeticExpressionZ3 => (IArithExprCapsule)ExpressionZ3;

@@ -25,7 +25,7 @@ public class ArithmeticExpression : Expression, IArithmeticExpression
         Operator = @operator;
         RightOperand = rightOperand;
 
-        binder.Binding(Prover.Z3, (ProverContextZ3 context) =>
+        Binder.Binding(Prover.Z3, (ProverContextZ3 context) =>
         {
             if (Operator == ArithmeticOperator.Modulo)
             {

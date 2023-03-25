@@ -1,11 +1,12 @@
 ﻿namespace CodeProverBinding;
 
+using System;
 using System.Collections.Generic;
 
 /// <summary>
 /// Provides bindings for code provers.
 /// </summary>
-public partial class Binder
+public partial class Binder : IDisposable
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="Binder"/> class.

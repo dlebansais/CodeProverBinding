@@ -22,7 +22,7 @@ public class ComparisonExpression : Expression, IComparisonExpression
         Operator = @operator;
         RightOperand = rightOperand;
 
-        binder.Binding(Prover.Z3, (ProverContextZ3 context) =>
+        Binder.Binding(Prover.Z3, (ProverContextZ3 context) =>
         {
             Dictionary<ComparisonOperator, Func<IArithExprCapsule, IArithExprCapsule, IBoolExprCapsule>> BinaryArithmetic = new()
             {
