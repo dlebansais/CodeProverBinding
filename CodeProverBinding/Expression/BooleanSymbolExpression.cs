@@ -8,9 +8,10 @@ public class BooleanSymbolExpression : SymbolExpression<IBooleanSort>, IBooleanS
     /// <summary>
     /// Initializes a new instance of the <see cref="BooleanSymbolExpression"/> class.
     /// </summary>
+    /// <param name="binder">The binder.</param>
     /// <param name="symbol">The symbol.</param>
-    public BooleanSymbolExpression(IBooleanSymbol symbol)
-        : base(symbol)
+    public BooleanSymbolExpression(Binder binder, IBooleanSymbol symbol)
+        : base(binder, symbol)
     {
     }
 }

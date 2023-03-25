@@ -8,9 +8,10 @@ public class IntegerConstantExpression : ConstantExpression<long>, IIntegerConst
     /// <summary>
     /// Initializes a new instance of the <see cref="IntegerConstantExpression"/> class.
     /// </summary>
+    /// <param name="binder">The binder.</param>
     /// <param name="value">The constant value.</param>
-    public IntegerConstantExpression(long value)
-        : base(value)
+    public IntegerConstantExpression(Binder binder, long value)
+        : base(binder, value)
     {
     }
 }

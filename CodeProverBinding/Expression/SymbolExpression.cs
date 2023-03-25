@@ -10,8 +10,10 @@ public abstract class SymbolExpression<TSort> : Expression, ISymbolExpression<TS
     /// <summary>
     /// Initializes a new instance of the <see cref="SymbolExpression{TSort}"/> class.
     /// </summary>
+    /// <param name="binder">The binder.</param>
     /// <param name="symbol">The symbol.</param>
-    public SymbolExpression(ISymbol<TSort> symbol)
+    public SymbolExpression(Binder binder, ISymbol<TSort> symbol)
+        : base(binder)
     {
         Symbol = symbol;
     }

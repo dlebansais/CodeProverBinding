@@ -13,7 +13,7 @@ public partial class Binder
     /// <param name="value">The constant value.</param>
     public IBooleanConstantExpression GetBooleanConstant(bool value)
     {
-        return new BooleanConstantExpression(value);
+        return new BooleanConstantExpression(this, value);
     }
 
     /// <summary>
@@ -22,7 +22,7 @@ public partial class Binder
     /// <param name="value">The constant value.</param>
     public IIntegerConstantExpression GetIntegerConstant(long value)
     {
-        return new IntegerConstantExpression(value);
+        return new IntegerConstantExpression(this, value);
     }
 
     /// <summary>
@@ -31,7 +31,7 @@ public partial class Binder
     /// <param name="value">The constant value.</param>
     public IFloatingPointConstantExpression GetFloatingPointConstant(double value)
     {
-        return new FloatingPointConstantExpression(value);
+        return new FloatingPointConstantExpression(this, value);
     }
 
     /// <summary>
@@ -67,7 +67,7 @@ public partial class Binder
     /// <param name="name">The symbol name.</param>
     public IBooleanSymbolExpression CreateBooleanSymbolExpression(string name)
     {
-        return new BooleanSymbolExpression(new BooleanSymbol(name));
+        return new BooleanSymbolExpression(this, new BooleanSymbol(name));
     }
 
     /// <summary>
@@ -76,7 +76,7 @@ public partial class Binder
     /// <param name="name">The symbol name.</param>
     public IIntegerSymbolExpression CreateIntegerSymbolExpression(string name)
     {
-        return new IntegerSymbolExpression(new IntegerSymbol(name));
+        return new IntegerSymbolExpression(this, new IntegerSymbol(name));
     }
 
     /// <summary>
@@ -85,7 +85,7 @@ public partial class Binder
     /// <param name="name">The symbol name.</param>
     public IFloatingPointSymbolExpression CreateFloatingPointSymbolExpression(string name)
     {
-        return new FloatingPointSymbolExpression(new FloatingPointSymbol(name));
+        return new FloatingPointSymbolExpression(this, new FloatingPointSymbol(name));
     }
 
     /// <summary>
@@ -94,7 +94,7 @@ public partial class Binder
     /// <param name="symbol">The symbol.</param>
     public IBooleanSymbolExpression CreateBooleanSymbolExpression(IBooleanSymbol symbol)
     {
-        return new BooleanSymbolExpression(symbol);
+        return new BooleanSymbolExpression(this, symbol);
     }
 
     /// <summary>
@@ -103,7 +103,7 @@ public partial class Binder
     /// <param name="symbol">The symbol.</param>
     public IIntegerSymbolExpression CreateIntegerSymbolExpression(IIntegerSymbol symbol)
     {
-        return new IntegerSymbolExpression(symbol);
+        return new IntegerSymbolExpression(this, symbol);
     }
 
     /// <summary>
@@ -112,7 +112,7 @@ public partial class Binder
     /// <param name="symbol">The symbol.</param>
     public IFloatingPointSymbolExpression CreateFloatingPointSymbolExpression(IFloatingPointSymbol symbol)
     {
-        return new FloatingPointSymbolExpression(symbol);
+        return new FloatingPointSymbolExpression(this, symbol);
     }
 
     /// <summary>
@@ -127,7 +127,7 @@ public partial class Binder
         if (@operator == ArithmeticOperator.Modulo && (leftOperand is not IIntegerExpression || rightOperand is not IIntegerExpression))
             throw new ArgumentException("The modulo operator is only supported with integer operands.");
 
-        return new ArithmeticExpression(leftOperand, @operator, rightOperand);
+        return new ArithmeticExpression(this, leftOperand, @operator, rightOperand);
     }
 
     /// <summary>
@@ -138,7 +138,7 @@ public partial class Binder
     /// <param name="rightOperand">The right operand.</param>
     public IComparisonExpression CreateComparisonExpression(IArithmeticExpression leftOperand, ComparisonOperator @operator, IArithmeticExpression rightOperand)
     {
-        return new ComparisonExpression(leftOperand, @operator, rightOperand);
+        return new ComparisonExpression(this, leftOperand, @operator, rightOperand);
     }
 
     /// <summary>
@@ -149,6 +149,6 @@ public partial class Binder
     /// <param name="rightOperand">The right operand.</param>
     public IEqualityExpression CreateEqualityExpression(IExpression leftOperand, EqualityOperator @operator, IExpression rightOperand)
     {
-        return new EqualityExpression(leftOperand, @operator, rightOperand);
+        return new EqualityExpression(this, leftOperand, @operator, rightOperand);
     }
 }

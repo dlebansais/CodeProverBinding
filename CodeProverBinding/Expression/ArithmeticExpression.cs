@@ -10,10 +10,12 @@ public class ArithmeticExpression : Expression, IArithmeticExpression
     /// <summary>
     /// Initializes a new instance of the <see cref="ArithmeticExpression"/> class.
     /// </summary>
+    /// <param name="binder">The binder.</param>
     /// <param name="leftOperand">The left operand.</param>
     /// <param name="operator">The operator.</param>
     /// <param name="rightOperand">The right operand.</param>
-    public ArithmeticExpression(IArithmeticExpression leftOperand, ArithmeticOperator @operator, IArithmeticExpression rightOperand)
+    public ArithmeticExpression(Binder binder, IArithmeticExpression leftOperand, ArithmeticOperator @operator, IArithmeticExpression rightOperand)
+        : base(binder)
     {
         Debug.Assert(@operator != ArithmeticOperator.Modulo || (leftOperand is IIntegerExpression && rightOperand is IIntegerExpression));
 

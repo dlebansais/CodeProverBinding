@@ -8,9 +8,10 @@ public class FloatingPointSymbolExpression : ArithmeticSymbolExpression<IFloatin
     /// <summary>
     /// Initializes a new instance of the <see cref="FloatingPointSymbolExpression"/> class.
     /// </summary>
+    /// <param name="binder">The binder.</param>
     /// <param name="symbol">The symbol.</param>
-    public FloatingPointSymbolExpression(IFloatingPointSymbol symbol)
-        : base(symbol)
+    public FloatingPointSymbolExpression(Binder binder, IFloatingPointSymbol symbol)
+        : base(binder, symbol)
     {
     }
 }

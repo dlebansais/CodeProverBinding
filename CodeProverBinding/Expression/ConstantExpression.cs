@@ -10,8 +10,10 @@ public abstract class ConstantExpression<TValue> : Expression, IConstantExpressi
     /// <summary>
     /// Initializes a new instance of the <see cref="ConstantExpression{TValue}"/> class.
     /// </summary>
+    /// <param name="binder">The binder.</param>
     /// <param name="value">The constant value.</param>
-    public ConstantExpression(TValue value)
+    public ConstantExpression(Binder binder, TValue value)
+        : base(binder)
     {
         Value = value;
     }

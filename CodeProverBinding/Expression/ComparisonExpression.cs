@@ -8,10 +8,12 @@ public class ComparisonExpression : Expression, IComparisonExpression
     /// <summary>
     /// Initializes a new instance of the <see cref="ComparisonExpression"/> class.
     /// </summary>
+    /// <param name="binder">The binder.</param>
     /// <param name="leftOperand">The left operand.</param>
     /// <param name="operator">The operator.</param>
     /// <param name="rightOperand">The right operand.</param>
-    public ComparisonExpression(IArithmeticExpression leftOperand, ComparisonOperator @operator, IArithmeticExpression rightOperand)
+    public ComparisonExpression(Binder binder, IArithmeticExpression leftOperand, ComparisonOperator @operator, IArithmeticExpression rightOperand)
+        : base(binder)
     {
         LeftOperand = leftOperand;
         Operator = @operator;

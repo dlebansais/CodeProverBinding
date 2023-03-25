@@ -8,9 +8,10 @@ public class BooleanConstantExpression : ConstantExpression<bool>, IBooleanConst
     /// <summary>
     /// Initializes a new instance of the <see cref="BooleanConstantExpression"/> class.
     /// </summary>
+    /// <param name="binder">The binder.</param>
     /// <param name="value">The constant value.</param>
-    public BooleanConstantExpression(bool value)
-        : base(value)
+    public BooleanConstantExpression(Binder binder, bool value)
+        : base(binder, value)
     {
     }
 }

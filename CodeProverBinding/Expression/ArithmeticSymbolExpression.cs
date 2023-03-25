@@ -10,9 +10,10 @@ public class ArithmeticSymbolExpression<TSort> : SymbolExpression<TSort>, IArith
     /// <summary>
     /// Initializes a new instance of the <see cref="ArithmeticSymbolExpression{TSort}"/> class.
     /// </summary>
+    /// <param name="binder">The binder.</param>
     /// <param name="symbol">The symbol.</param>
-    public ArithmeticSymbolExpression(ISymbol<TSort> symbol)
-        : base(symbol)
+    public ArithmeticSymbolExpression(Binder binder, ISymbol<TSort> symbol)
+        : base(binder, symbol)
     {
     }
 }

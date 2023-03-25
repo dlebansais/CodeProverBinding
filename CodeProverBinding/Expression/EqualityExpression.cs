@@ -8,10 +8,12 @@ public class EqualityExpression : Expression, IEqualityExpression
     /// <summary>
     /// Initializes a new instance of the <see cref="EqualityExpression"/> class.
     /// </summary>
+    /// <param name="binder">The binder.</param>
     /// <param name="leftOperand">The left operand.</param>
     /// <param name="operator">The operator.</param>
     /// <param name="rightOperand">The right operand.</param>
-    public EqualityExpression(IExpression leftOperand, EqualityOperator @operator, IExpression rightOperand)
+    public EqualityExpression(Binder binder, IExpression leftOperand, EqualityOperator @operator, IExpression rightOperand)
+        : base(binder)
     {
         LeftOperand = leftOperand;
         Operator = @operator;
