@@ -1,4 +1,4 @@
-﻿namespace ModelAnalyzer;
+﻿namespace CodeProverBinding;
 
 using Microsoft.Z3;
 

@@ -13,5 +13,8 @@ public class IntegerSymbolExpression : ArithmeticSymbolExpression<IIntegerSort>,
     public IntegerSymbolExpression(Binder binder, IIntegerSymbol symbol)
         : base(binder, symbol)
     {
+        binder.Binding(Prover.Z3, (ProverContextZ3 context) => { Expression = context.Context.MkIntConst(((ISymbol)symbol).Name).Encapsulate(); });
     }
+
+    internal IIntExprCapsule Expression { get; private set; } = null!;
 }

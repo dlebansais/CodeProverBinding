@@ -1,4 +1,4 @@
-﻿namespace ModelAnalyzer;
+﻿namespace CodeProverBinding;
 
 internal interface ISimpleExprCapsule
 {
