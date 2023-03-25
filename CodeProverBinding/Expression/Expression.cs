@@ -18,4 +18,6 @@ public abstract class Expression : IExpression
     /// Gets the binder.
     /// </summary>
     public Binder Binder { get; }
+
+    internal IExprCapsule ExpressionZ3 { get; private protected set; } = null!;
 }

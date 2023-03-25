@@ -1,7 +1,7 @@
 ﻿namespace CodeProverBinding;
 
 /// <summary>
-/// Represents an integer symbol expression.
+/// Represents an arithmetic symbol expression.
 /// </summary>
 /// <typeparam name="TSort">The symbol sort.</typeparam>
 public class ArithmeticSymbolExpression<TSort> : SymbolExpression<TSort>, IArithmeticSymbolExpression<TSort>
@@ -16,4 +16,6 @@ public class ArithmeticSymbolExpression<TSort> : SymbolExpression<TSort>, IArith
         : base(binder, symbol)
     {
     }
+
+    internal IArithExprCapsule ArithmeticExpressionZ3 => (IArithExprCapsule)ExpressionZ3;
 }

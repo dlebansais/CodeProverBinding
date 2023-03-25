@@ -13,8 +13,8 @@ public class BooleanConstantExpression : ConstantExpression<bool>, IBooleanConst
     public BooleanConstantExpression(Binder binder, bool value)
         : base(binder, value)
     {
-        binder.Binding(Prover.Z3, (ProverContextZ3 context) => { Expression = context.Context.MkBool(value).Encapsulate(); });
+        binder.Binding(Prover.Z3, (ProverContextZ3 context) => { ExpressionZ3 = context.Context.MkBool(value).Encapsulate(); });
     }
 
-    internal IBoolExprCapsule Expression { get; private set; } = null!;
+    internal IBoolExprCapsule BooleanExpressionZ3 => (IBoolExprCapsule)ExpressionZ3;
 }

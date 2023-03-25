@@ -13,8 +13,6 @@ public class FloatingPointSymbolExpression : ArithmeticSymbolExpression<IFloatin
     public FloatingPointSymbolExpression(Binder binder, IFloatingPointSymbol symbol)
         : base(binder, symbol)
     {
-        binder.Binding(Prover.Z3, (ProverContextZ3 context) => { Expression = context.Context.MkRealConst(((ISymbol)symbol).Name).Encapsulate(); });
+        binder.Binding(Prover.Z3, (ProverContextZ3 context) => { ExpressionZ3 = context.Context.MkRealConst(((ISymbol)symbol).Name).Encapsulate(); });
     }
-
-    internal IArithExprCapsule Expression { get; private set; } = null!;
 }

@@ -1,5 +1,8 @@
 ﻿namespace CodeProverBinding;
 
+using System;
+using System.Collections.Generic;
+
 /// <summary>
 /// Represents an equality expression.
 /// </summary>
@@ -18,6 +21,17 @@ public class EqualityExpression : Expression, IEqualityExpression
         LeftOperand = leftOperand;
         Operator = @operator;
         RightOperand = rightOperand;
+
+        binder.Binding(Prover.Z3, (ProverContextZ3 context) =>
+        {
+            Dictionary<EqualityOperator, Func<IExprCapsule, IExprCapsule, IBoolExprCapsule>> BinaryArithmetic = new()
+            {
+                { EqualityOperator.Equal, (IExprCapsule left, IExprCapsule right) => context.Context.MkEq(left.Item, right.Item).Encapsulate() },
+                { EqualityOperator.NotEqual, (IExprCapsule left, IExprCapsule right) => context.Context.MkNot(context.Context.MkEq(left.Item, right.Item)).Encapsulate() },
+            };
+
+            ExpressionZ3 = BinaryArithmetic[Operator](((Expression)LeftOperand).ExpressionZ3, ((Expression)RightOperand).ExpressionZ3);
+        });
     }
 
     /// <summary>
@@ -34,4 +48,6 @@ public class EqualityExpression : Expression, IEqualityExpression
     /// Gets the right operand.
     /// </summary>
     public IExpression RightOperand { get; }
+
+    internal IBoolExprCapsule BooleanExpressionZ3 => (IBoolExprCapsule)ExpressionZ3;
 }

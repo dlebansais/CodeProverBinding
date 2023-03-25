@@ -1,5 +1,8 @@
 ﻿namespace CodeProverBinding;
 
+using System;
+using System.Collections.Generic;
+
 /// <summary>
 /// Represents a comparison expression.
 /// </summary>
@@ -18,6 +21,19 @@ public class ComparisonExpression : Expression, IComparisonExpression
         LeftOperand = leftOperand;
         Operator = @operator;
         RightOperand = rightOperand;
+
+        binder.Binding(Prover.Z3, (ProverContextZ3 context) =>
+        {
+            Dictionary<ComparisonOperator, Func<IArithExprCapsule, IArithExprCapsule, IBoolExprCapsule>> BinaryArithmetic = new()
+            {
+                { ComparisonOperator.LessThan, (IArithExprCapsule left, IArithExprCapsule right) => context.Context.MkLt(left.Item, right.Item).Encapsulate() },
+                { ComparisonOperator.LessThanOrEqual, (IArithExprCapsule left, IArithExprCapsule right) => context.Context.MkLe(left.Item, right.Item).Encapsulate() },
+                { ComparisonOperator.GreaterThan, (IArithExprCapsule left, IArithExprCapsule right) => context.Context.MkGt(left.Item, right.Item).Encapsulate() },
+                { ComparisonOperator.GreaterThanOrEqual, (IArithExprCapsule left, IArithExprCapsule right) => context.Context.MkGe(left.Item, right.Item).Encapsulate() },
+            };
+
+            ExpressionZ3 = BinaryArithmetic[Operator]((IArithExprCapsule)((Expression)LeftOperand).ExpressionZ3, (IArithExprCapsule)((Expression)RightOperand).ExpressionZ3);
+        });
     }
 
     /// <summary>
@@ -34,4 +50,6 @@ public class ComparisonExpression : Expression, IComparisonExpression
     /// Gets the right operand.
     /// </summary>
     public IArithmeticExpression RightOperand { get; }
+
+    internal IBoolExprCapsule BooleanExpressionZ3 => (IBoolExprCapsule)ExpressionZ3;
 }

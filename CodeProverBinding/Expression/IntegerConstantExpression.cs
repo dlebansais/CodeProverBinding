@@ -13,8 +13,8 @@ public class IntegerConstantExpression : ConstantExpression<long>, IIntegerConst
     public IntegerConstantExpression(Binder binder, long value)
         : base(binder, value)
     {
-        binder.Binding(Prover.Z3, (ProverContextZ3 context) => { Expression = context.Context.MkInt(value).Encapsulate(); });
+        binder.Binding(Prover.Z3, (ProverContextZ3 context) => { ExpressionZ3 = context.Context.MkInt(value).Encapsulate(); });
     }
 
-    internal IIntExprCapsule Expression { get; private set; } = null!;
+    internal IIntExprCapsule IntegerExpressionZ3 => (IIntExprCapsule)ExpressionZ3;
 }
