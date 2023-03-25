@@ -24,7 +24,7 @@ public class ComparisonExpression : Expression, IComparisonExpression
 
         Binder.Binding(Prover.Z3, (ProverContextZ3 context) =>
         {
-            Dictionary<ComparisonOperator, Func<IArithExprCapsule, IArithExprCapsule, IBoolExprCapsule>> BinaryArithmetic = new()
+            Dictionary<ComparisonOperator, Func<IArithExprCapsule, IArithExprCapsule, IBoolExprCapsule>> ComparisonArithmetic = new()
             {
                 { ComparisonOperator.LessThan, (IArithExprCapsule left, IArithExprCapsule right) => context.Context.MkLt(left.Item, right.Item).Encapsulate() },
                 { ComparisonOperator.LessThanOrEqual, (IArithExprCapsule left, IArithExprCapsule right) => context.Context.MkLe(left.Item, right.Item).Encapsulate() },
@@ -32,7 +32,7 @@ public class ComparisonExpression : Expression, IComparisonExpression
                 { ComparisonOperator.GreaterThanOrEqual, (IArithExprCapsule left, IArithExprCapsule right) => context.Context.MkGe(left.Item, right.Item).Encapsulate() },
             };
 
-            ExpressionZ3 = BinaryArithmetic[Operator]((IArithExprCapsule)((Expression)LeftOperand).ExpressionZ3, (IArithExprCapsule)((Expression)RightOperand).ExpressionZ3);
+            ExpressionZ3 = ComparisonArithmetic[Operator]((IArithExprCapsule)((Expression)LeftOperand).ExpressionZ3, (IArithExprCapsule)((Expression)RightOperand).ExpressionZ3);
         });
     }
 

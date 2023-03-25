@@ -24,13 +24,13 @@ public class EqualityExpression : Expression, IEqualityExpression
 
         Binder.Binding(Prover.Z3, (ProverContextZ3 context) =>
         {
-            Dictionary<EqualityOperator, Func<IExprCapsule, IExprCapsule, IBoolExprCapsule>> BinaryArithmetic = new()
+            Dictionary<EqualityOperator, Func<IExprCapsule, IExprCapsule, IBoolExprCapsule>> EqualityArithmetic = new()
             {
                 { EqualityOperator.Equal, (IExprCapsule left, IExprCapsule right) => context.Context.MkEq(left.Item, right.Item).Encapsulate() },
                 { EqualityOperator.NotEqual, (IExprCapsule left, IExprCapsule right) => context.Context.MkNot(context.Context.MkEq(left.Item, right.Item)).Encapsulate() },
             };
 
-            ExpressionZ3 = BinaryArithmetic[Operator](((Expression)LeftOperand).ExpressionZ3, ((Expression)RightOperand).ExpressionZ3);
+            ExpressionZ3 = EqualityArithmetic[Operator](((Expression)LeftOperand).ExpressionZ3, ((Expression)RightOperand).ExpressionZ3);
         });
     }
 

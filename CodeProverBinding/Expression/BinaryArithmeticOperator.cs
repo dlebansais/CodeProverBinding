@@ -1,9 +1,9 @@
 ﻿namespace CodeProverBinding;
 
 /// <summary>
-/// Arithmetic operators.
+/// Binary arithmetic operators.
 /// </summary>
-public enum ArithmeticOperator
+public enum BinaryArithmeticOperator
 {
     /// <summary>
     /// The + operator.

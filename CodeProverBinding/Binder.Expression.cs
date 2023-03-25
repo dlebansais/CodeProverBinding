@@ -162,18 +162,28 @@ public partial class Binder
     }
 
     /// <summary>
-    /// Creates an arithmetic expression.
+    /// Creates a binary arithmetic expression.
     /// </summary>
     /// <param name="leftOperand">The left operand.</param>
     /// <param name="operator">The operator.</param>
     /// <param name="rightOperand">The right operand.</param>
     /// <exception cref="ArgumentException">The modulo operator is only supported with integer operands.</exception>
-    public IArithmeticExpression CreateArithmeticExpression(IArithmeticExpression leftOperand, ArithmeticOperator @operator, IArithmeticExpression rightOperand)
+    public IBinaryArithmeticExpression CreateBinaryArithmeticExpression(IArithmeticExpression leftOperand, BinaryArithmeticOperator @operator, IArithmeticExpression rightOperand)
     {
-        if (@operator == ArithmeticOperator.Modulo && (leftOperand is not IIntegerExpression || rightOperand is not IIntegerExpression))
+        if (@operator == BinaryArithmeticOperator.Modulo && (leftOperand is not IIntegerExpression || rightOperand is not IIntegerExpression))
             throw new ArgumentException("The modulo operator is only supported with integer operands.");
 
-        return new ArithmeticExpression(this, leftOperand, @operator, rightOperand);
+        return new BinaryArithmeticExpression(this, leftOperand, @operator, rightOperand);
+    }
+
+    /// <summary>
+    /// Creates a unary arithmetic expression.
+    /// </summary>
+    /// <param name="operator">The operator.</param>
+    /// <param name="operand">The operand.</param>
+    public IUnaryArithmeticExpression CreateUnaryArithmeticExpression(UnaryArithmeticOperator @operator, IArithmeticExpression operand)
+    {
+        return new UnaryArithmeticExpression(this, @operator, operand);
     }
 
     /// <summary>
