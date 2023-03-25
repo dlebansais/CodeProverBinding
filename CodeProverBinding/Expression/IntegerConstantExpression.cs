@@ -3,17 +3,18 @@
 /// <summary>
 /// Represents an integer constant expression.
 /// </summary>
-public class IntegerConstantExpression : ConstantExpression<long>, IIntegerConstantExpression
+/// <typeparam name="TInteger">The integer type.</typeparam>
+public abstract class IntegerConstantExpression<TInteger> : ConstantExpression<TInteger>, IIntegerConstantExpression
+    where TInteger : struct
 {
     /// <summary>
-    /// Initializes a new instance of the <see cref="IntegerConstantExpression"/> class.
+    /// Initializes a new instance of the <see cref="IntegerConstantExpression{TInteger}"/> class.
     /// </summary>
     /// <param name="binder">The binder.</param>
     /// <param name="value">The constant value.</param>
-    public IntegerConstantExpression(Binder binder, long value)
+    public IntegerConstantExpression(Binder binder, TInteger value)
         : base(binder, value)
     {
-        Binder.Binding(Prover.Z3, (ProverContextZ3 context) => { ExpressionZ3 = context.Context.MkInt(value).Encapsulate(); });
     }
 
     internal IIntExprCapsule IntegerExpressionZ3 => (IIntExprCapsule)ExpressionZ3;

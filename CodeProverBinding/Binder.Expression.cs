@@ -20,9 +20,36 @@ public partial class Binder
     /// Gets the integer constant expression corresponding to <paramref name="value"/>.
     /// </summary>
     /// <param name="value">The constant value.</param>
+    public IIntegerConstantExpression GetIntegerConstant(int value)
+    {
+        return new IntegerConstantExpressionInt(this, value);
+    }
+
+    /// <summary>
+    /// Gets the integer constant expression corresponding to <paramref name="value"/>.
+    /// </summary>
+    /// <param name="value">The constant value.</param>
     public IIntegerConstantExpression GetIntegerConstant(long value)
     {
-        return new IntegerConstantExpression(this, value);
+        return new IntegerConstantExpressionLong(this, value);
+    }
+
+    /// <summary>
+    /// Gets the integer constant expression corresponding to <paramref name="value"/>.
+    /// </summary>
+    /// <param name="value">The constant value.</param>
+    public IIntegerConstantExpression GetIntegerConstant(uint value)
+    {
+        return new IntegerConstantExpressionUint(this, value);
+    }
+
+    /// <summary>
+    /// Gets the integer constant expression corresponding to <paramref name="value"/>.
+    /// </summary>
+    /// <param name="value">The constant value.</param>
+    public IIntegerConstantExpression GetIntegerConstant(ulong value)
+    {
+        return new IntegerConstantExpressionUlong(this, value);
     }
 
     /// <summary>
