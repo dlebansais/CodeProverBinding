@@ -11,13 +11,26 @@ public partial class Binder : IDisposable
     /// <summary>
     /// Initializes a new instance of the <see cref="Binder"/> class.
     /// </summary>
+    private Binder()
+    {
+        Provers = new List<Prover>();
+        False = GetBooleanConstant(false);
+        True = GetBooleanConstant(true);
+        Zero = GetIntegerConstant(0);
+        Null = GetReferenceConstant(ReferenceIndex.Null);
+    }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Binder"/> class.
+    /// </summary>
     /// <param name="prover">The selected prover.</param>
     public Binder(Prover prover)
+        : this()
     {
         if (prover == Prover.Default)
-            Provers = new List<Prover>() { Prover.Z3 };
+            Provers.Add(Prover.Z3);
         else
-            Provers = new List<Prover>() { prover };
+            Provers.Add(prover);
     }
 
     /// <summary>
@@ -25,9 +38,8 @@ public partial class Binder : IDisposable
     /// </summary>
     /// <param name="provers">The selected provers.</param>
     public Binder(IEnumerable<Prover> provers)
+        : this()
     {
-        Provers = new List<Prover>();
-
         foreach (Prover Prover in provers)
             if (Prover != Prover.Default)
                 Provers.Add(Prover);

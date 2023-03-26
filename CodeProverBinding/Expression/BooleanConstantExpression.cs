@@ -1,7 +1,7 @@
 ﻿namespace CodeProverBinding;
 
 /// <summary>
-/// Represents an boolean constant expression.
+/// Represents a boolean constant expression.
 /// </summary>
 public class BooleanConstantExpression : ConstantExpression<bool>, IBooleanConstantExpression
 {

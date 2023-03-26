@@ -9,6 +9,26 @@ using System.Collections.Generic;
 public partial class Binder
 {
     /// <summary>
+    /// Gets the constant representing the boolean false.
+    /// </summary>
+    public IBooleanConstantExpression False { get; }
+
+    /// <summary>
+    /// Gets the constant representing the boolean true.
+    /// </summary>
+    public IBooleanConstantExpression True { get; }
+
+    /// <summary>
+    /// Gets the constant representing the integer 0.
+    /// </summary>
+    public IIntegerConstantExpression Zero { get; }
+
+    /// <summary>
+    /// Gets the constant representing the null reference.
+    /// </summary>
+    public IReferenceConstantExpression Null { get; }
+
+    /// <summary>
     /// Gets the boolean constant expression corresponding to <paramref name="value"/>.
     /// </summary>
     /// <param name="value">The constant value.</param>
@@ -78,6 +98,18 @@ public partial class Binder
             ConstantTable[value] = new FloatingPointConstantExpression(this, value);
 
         return (IFloatingPointConstantExpression)ConstantTable[value];
+    }
+
+    /// <summary>
+    /// Gets the reference constant expression corresponding to <paramref name="value"/>.
+    /// </summary>
+    /// <param name="value">The constant value.</param>
+    public IReferenceConstantExpression GetReferenceConstant(ReferenceIndex value)
+    {
+        if (!ConstantTable.ContainsKey(value))
+            ConstantTable[value] = new ReferenceConstantExpression(this, value);
+
+        return (IReferenceConstantExpression)ConstantTable[value];
     }
 
     /// <summary>

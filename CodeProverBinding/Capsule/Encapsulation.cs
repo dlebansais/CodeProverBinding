@@ -24,4 +24,9 @@ internal static class Encapsulation
                 return new ArithExprCapsule() { Item = expr };
         }
     }
+
+    public static IRefExprCapsule EncapsulateAsRef(this IntExpr expr, ReferenceIndex index)
+    {
+        return new RefExprCapsule() { Item = expr, Index = index };
+    }
 }
