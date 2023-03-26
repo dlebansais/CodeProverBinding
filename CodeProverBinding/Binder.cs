@@ -17,7 +17,7 @@ public partial class Binder : IDisposable
         False = GetBooleanConstant(false);
         True = GetBooleanConstant(true);
         Zero = GetIntegerConstant(0);
-        Null = GetReferenceConstant(Reference.Null);
+        Null = new ReferenceConstantExpression(this, Reference.Null);
     }
 
     /// <summary>

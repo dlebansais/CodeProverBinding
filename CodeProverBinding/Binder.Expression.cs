@@ -101,18 +101,6 @@ public partial class Binder
     }
 
     /// <summary>
-    /// Gets the reference constant expression corresponding to <paramref name="value"/>.
-    /// </summary>
-    /// <param name="value">The constant value.</param>
-    public IReferenceConstantExpression GetReferenceConstant(Reference value)
-    {
-        if (!ConstantTable.ContainsKey(value))
-            ConstantTable[value] = new ReferenceConstantExpression(this, value);
-
-        return (IReferenceConstantExpression)ConstantTable[value];
-    }
-
-    /// <summary>
     /// Creates a boolean symbol with name <paramref name="name"/>.
     /// </summary>
     /// <param name="name">The symbol name.</param>
@@ -185,6 +173,24 @@ public partial class Binder
     }
 
     /// <summary>
+    /// Creates an object reference symbol expression with name <paramref name="name"/>.
+    /// </summary>
+    /// <param name="name">The symbol name.</param>
+    public IObjectReferenceSymbolExpression CreateObjectReferenceSymbolExpression(string name)
+    {
+        return new ObjectReferenceSymbolExpression(this, new ReferenceSymbol(name));
+    }
+
+    /// <summary>
+    /// Creates an array reference symbol expression with name <paramref name="name"/>.
+    /// </summary>
+    /// <param name="name">The symbol name.</param>
+    public IArrayReferenceSymbolExpression CreateArrayReferenceSymbolExpression(string name)
+    {
+        return new ArrayReferenceSymbolExpression(this, new ReferenceSymbol(name));
+    }
+
+    /// <summary>
     /// Creates a boolean symbol expression with symbol <paramref name="symbol"/>.
     /// </summary>
     /// <param name="symbol">The symbol.</param>
@@ -218,6 +224,24 @@ public partial class Binder
     public IReferenceSymbolExpression CreateReferenceSymbolExpression(IReferenceSymbol symbol)
     {
         return new ReferenceSymbolExpression(this, symbol);
+    }
+
+    /// <summary>
+    /// Creates an object reference symbol expression with symbol <paramref name="symbol"/>.
+    /// </summary>
+    /// <param name="symbol">The symbol.</param>
+    public IObjectReferenceSymbolExpression CreateObjectReferenceSymbolExpression(IReferenceSymbol symbol)
+    {
+        return new ObjectReferenceSymbolExpression(this, symbol);
+    }
+
+    /// <summary>
+    /// Creates an array reference symbol expression with symbol <paramref name="symbol"/>.
+    /// </summary>
+    /// <param name="symbol">The symbol.</param>
+    public IArrayReferenceSymbolExpression CreateArrayReferenceSymbolExpression(IReferenceSymbol symbol)
+    {
+        return new ArrayReferenceSymbolExpression(this, symbol);
     }
 
     /// <summary>

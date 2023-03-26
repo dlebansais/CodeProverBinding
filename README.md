@@ -135,7 +135,9 @@ In addition to predefined basic types such as `int`, C# manipulate objects, thro
 
 The library also provides methods to get reference constants, though in C# only one constant exists: `null`. Other references are generally anonymous objects and a code verifier would give them generated names.
 
-To get the `null` constant expression, either call `GetReferenceConstant(Reference.Null)` or (simpler alternative) get the `Null` property.
+To get the `null` constant expression, get the `Binding.Null` property.
+
+The library allows to further distinguish between references to objects or reference to arrays, using `CreateObjectReferenceSymbolExpression` and `CreateArrayReferenceSymbolExpression` methods.
 
 ## Predefined constants
 
