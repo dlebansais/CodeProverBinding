@@ -104,7 +104,7 @@ public partial class Binder
     /// Gets the reference constant expression corresponding to <paramref name="value"/>.
     /// </summary>
     /// <param name="value">The constant value.</param>
-    public IReferenceConstantExpression GetReferenceConstant(ReferenceIndex value)
+    public IReferenceConstantExpression GetReferenceConstant(Reference value)
     {
         if (!ConstantTable.ContainsKey(value))
             ConstantTable[value] = new ReferenceConstantExpression(this, value);
