@@ -49,12 +49,12 @@ The equality relation is then obtained with a call to `CreateEqualityExpression`
 
 *(For brevity, the instance of the binder object is omitted below. For instance the first line would be `var x = binder.CreateIntegerSymbol();`)*
 
-```cs
+````csharp
 var x = CreateIntegerSymbol("x");
 var _1 = GetIntegerConstant(1);
 var equalityX = CreateEqualityExpression(x, EqualityOperator.Equal, _1);
 equalityX.Assert();
-```
+````
 
 We can do the same with `y`. The case of `z` is slightly more complicated. First we need to create the `x + y` expression (with a call to `CreateBinaryArithmeticExpression`) then the equality expression. This finally gives us the following sequence of calls:
 
