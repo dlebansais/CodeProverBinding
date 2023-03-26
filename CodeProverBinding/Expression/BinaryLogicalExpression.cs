@@ -30,7 +30,7 @@ public class BinaryLogicalExpression : Expression, IBinaryLogicalExpression, ILo
                 { BinaryLogicalOperator.Or, (IBoolExprCapsule left, IBoolExprCapsule right) => context.Context.MkOr(left.Item, right.Item).Encapsulate() },
             };
 
-            ExpressionZ3 = BinaryLogical[Operator]((IBoolExprCapsule)((Expression)LeftOperand).ExpressionZ3, (IBoolExprCapsule)((Expression)RightOperand).ExpressionZ3);
+            ExpressionZ3 = (IExprCapsule)BinaryLogical[Operator]((IBoolExprCapsule)((Expression)LeftOperand).ExpressionZ3, (IBoolExprCapsule)((Expression)RightOperand).ExpressionZ3);
         });
     }
 

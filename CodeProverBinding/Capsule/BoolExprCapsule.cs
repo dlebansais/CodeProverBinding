@@ -2,7 +2,7 @@
 
 using Microsoft.Z3;
 
-internal record BoolExprCapsule : IBoolExprCapsule, ISimpleExprCapsule
+internal record BoolExprCapsule : IBoolExprCapsule, IExprCapsule
 {
     required public BoolExpr Item { get; init; }
     Expr IExprCapsule.Item { get => Item; }

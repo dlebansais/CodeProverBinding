@@ -13,6 +13,6 @@ public class IntegerConstantExpressionLong : IntegerConstantExpression<long>
     public IntegerConstantExpressionLong(Binder binder, long value)
         : base(binder, value)
     {
-        Binder.Binding(Prover.Z3, (ProverContextZ3 context) => { ExpressionZ3 = context.Context.MkInt(value).Encapsulate(); });
+        Binder.Binding(Prover.Z3, (ProverContextZ3 context) => { ExpressionZ3 = (IExprCapsule)context.Context.MkInt(value).Encapsulate(); });
     }
 }

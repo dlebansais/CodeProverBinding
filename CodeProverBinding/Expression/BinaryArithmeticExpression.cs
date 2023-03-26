@@ -35,7 +35,7 @@ public class BinaryArithmeticExpression : Expression, IBinaryArithmeticExpressio
                 Debug.Assert(IsLeftInteger);
                 Debug.Assert(IsRightInteger);
 
-                ExpressionZ3 = context.Context.MkMod(LeftIntegerExpressionZ3.Item, RightIntegerExpressionZ3.Item).Encapsulate();
+                ExpressionZ3 = (IExprCapsule)context.Context.MkMod(LeftIntegerExpressionZ3.Item, RightIntegerExpressionZ3.Item).Encapsulate();
             }
             else
             {
@@ -47,7 +47,7 @@ public class BinaryArithmeticExpression : Expression, IBinaryArithmeticExpressio
                     { BinaryArithmeticOperator.Divide, (IArithExprCapsule left, IArithExprCapsule right) => context.Context.MkDiv(left.Item, right.Item).Encapsulate() },
                 };
 
-                ExpressionZ3 = BinaryArithmetic[Operator]((IArithExprCapsule)((Expression)LeftOperand).ExpressionZ3, (IArithExprCapsule)((Expression)RightOperand).ExpressionZ3);
+                ExpressionZ3 = (IExprCapsule)BinaryArithmetic[Operator]((IArithExprCapsule)((Expression)LeftOperand).ExpressionZ3, (IArithExprCapsule)((Expression)RightOperand).ExpressionZ3);
             }
         });
     }

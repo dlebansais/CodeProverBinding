@@ -27,7 +27,7 @@ public class UnaryLogicalExpression : Expression, IUnaryLogicalExpression, ILogi
                 { UnaryLogicalOperator.Not, (IBoolExprCapsule operand) => context.Context.MkNot(operand.Item).Encapsulate() },
             };
 
-            ExpressionZ3 = UnaryLogical[Operator]((IBoolExprCapsule)((Expression)Operand).ExpressionZ3);
+            ExpressionZ3 = (IExprCapsule)UnaryLogical[Operator]((IBoolExprCapsule)((Expression)Operand).ExpressionZ3);
         });
     }
 
@@ -37,5 +37,5 @@ public class UnaryLogicalExpression : Expression, IUnaryLogicalExpression, ILogi
     /// <inheritdoc/>
     public IBooleanExpression Operand { get; }
 
-    internal IArithExprCapsule LogicalExpressionZ3 => (IArithExprCapsule)ExpressionZ3;
+    internal IBoolExprCapsule LogicalExpressionZ3 => (IBoolExprCapsule)ExpressionZ3;
 }

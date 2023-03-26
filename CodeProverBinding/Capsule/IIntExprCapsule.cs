@@ -2,7 +2,6 @@
 
 using Microsoft.Z3;
 
-internal interface IIntExprCapsule : IArithExprCapsule
+internal interface IIntExprCapsule : IArithExprCapsule<IntExpr>
 {
-    new IntExpr Item { get; }
 }

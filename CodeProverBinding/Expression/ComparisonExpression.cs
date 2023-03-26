@@ -32,7 +32,7 @@ public class ComparisonExpression : Expression, IComparisonExpression
                 { ComparisonOperator.GreaterThanOrEqual, (IArithExprCapsule left, IArithExprCapsule right) => context.Context.MkGe(left.Item, right.Item).Encapsulate() },
             };
 
-            ExpressionZ3 = ComparisonArithmetic[Operator]((IArithExprCapsule)((Expression)LeftOperand).ExpressionZ3, (IArithExprCapsule)((Expression)RightOperand).ExpressionZ3);
+            ExpressionZ3 = (IExprCapsule)ComparisonArithmetic[Operator]((IArithExprCapsule)((Expression)LeftOperand).ExpressionZ3, (IArithExprCapsule)((Expression)RightOperand).ExpressionZ3);
         });
     }
 

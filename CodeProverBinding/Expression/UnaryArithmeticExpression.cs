@@ -28,7 +28,7 @@ public class UnaryArithmeticExpression : Expression, IUnaryArithmeticExpression,
                 { UnaryArithmeticOperator.Minus, (IArithExprCapsule operand) => context.Context.MkUnaryMinus(operand.Item).Encapsulate() },
             };
 
-            ExpressionZ3 = UnaryArithmetic[Operator]((IArithExprCapsule)((Expression)Operand).ExpressionZ3);
+            ExpressionZ3 = (IExprCapsule)UnaryArithmetic[Operator]((IArithExprCapsule)((Expression)Operand).ExpressionZ3);
         });
     }
 

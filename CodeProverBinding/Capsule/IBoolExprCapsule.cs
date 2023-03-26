@@ -2,7 +2,6 @@
 
 using Microsoft.Z3;
 
-internal interface IBoolExprCapsule : IExprCapsule
+internal interface IBoolExprCapsule : IExprCapsule<BoolExpr>
 {
-    new BoolExpr Item { get; }
 }

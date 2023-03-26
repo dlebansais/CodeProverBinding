@@ -30,7 +30,7 @@ public class EqualityExpression : Expression, IEqualityExpression
                 { EqualityOperator.NotEqual, (IExprCapsule left, IExprCapsule right) => context.Context.MkNot(context.Context.MkEq(left.Item, right.Item)).Encapsulate() },
             };
 
-            ExpressionZ3 = EqualityArithmetic[Operator](((Expression)LeftOperand).ExpressionZ3, ((Expression)RightOperand).ExpressionZ3);
+            ExpressionZ3 = (IExprCapsule)EqualityArithmetic[Operator](((Expression)LeftOperand).ExpressionZ3, ((Expression)RightOperand).ExpressionZ3);
         });
     }
 
