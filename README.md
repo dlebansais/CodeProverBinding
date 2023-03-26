@@ -49,12 +49,12 @@ The equality relation is then obtained with a call to `CreateEqualityExpression`
 
 *(For brevity, the instance of the binder object is omitted below. For instance the first line would be `var x = binder.CreateIntegerSymbol();`)*
 
-````csharp
+```csharp
 var x = CreateIntegerSymbol("x");
 var _1 = GetIntegerConstant(1);
 var equalityX = CreateEqualityExpression(x, EqualityOperator.Equal, _1);
 equalityX.Assert();
-````
+```
 
 We can do the same with `y`. The case of `z` is slightly more complicated. First we need to create the `x + y` expression (with a call to `CreateBinaryArithmeticExpression`) then the equality expression. This finally gives us the following sequence of calls:
 
@@ -62,7 +62,7 @@ We can do the same with `y`. The case of `z` is slightly more complicated. First
 var x = CreateIntegerSymbol("x");
 var _1 = GetIntegerConstant(1);
 var equalityX = CreateEqualityExpression(x, EqualityOperator.Equal, _1);
-equality.Assert();
+equalityX.Assert();
 
 var y = CreateIntegerSymbol("y");
 var _2 = GetIntegerConstant(2);
@@ -85,9 +85,10 @@ And the result is in the `IsCorrect` property, which in this case is `true` beca
 
 ## Assertions
 
-It is typical in code verification to check that some assertions hold true. For instance, a class can have invariants, checked after a class method return. The syntax for specifying assertions (for example [spec#](https://www.microsoft.com/en-us/research/project/spec/)) doesn't really matter. We are interested in the translation to boolean expressions that can be added as constraints.
-For instance, say we have the boolean expression `var isGreater = CreateComparisonExpression(…, ComparisonOperator.Greater, …)`. We want to check that `isGreater` holds, but we don't really to keep the expression itself. Think of it as an optimization.
-Another example is invariants. When checking correctness, we're not looking to values that satisfy an invariant. We want to make sure no value can possibly satisfy the *opposite* of the invariant, which is not the same thing.
+It is typical in code verification to check that some assertion holds true. For instance, a class can have invariants, checked after a class method returns. The syntax for specifying assertions (for example [spec#](https://www.microsoft.com/en-us/research/project/spec/)) doesn't really matter. We are interested in the translation to boolean expressions that can be added as constraints.
+For instance, say we have the boolean expression `var isGreater = CreateComparisonExpression(…, ComparisonOperator.Greater, …)`. We want to check that `isGreater` holds, but we don't really need to keep the expression itself afterward. Think of it as an optimization.
+
+Another example is invariants. When checking correctness, we're not looking for values that satisfy an invariant. We want to make sure that no value can possibly satisfy the *opposite* of the invariant, which is not the same thing.
 
 Consider:
 
@@ -104,12 +105,12 @@ For instance `X` = 0, `Y` = 0, `Z` = 3.
 
 Generally, we sometimes want to find values that satisfy constraints, and sometimes ensure that no value can satisfy constraints. How is this apparent conundrum resolved?
 
-In practice, in situations we want the system to not be satisfied, the result can be discarded. It's just a 'check'.
+In practice, in situations we want the system to not be satisfied, the result can be discarded. It's just a "check".
 
 So the library provides two methods to save and restore the system state. In the case of the invariant above, the code would look like this:
 
 ```csharp
-// Tell the library that for the next check, correctness is non-satisfiability.
+// Tell the library that for the next check, correctness is non-satisfiability, and save the current state.
 SaveProverState(CorrectnessCheckType.NotSatisfiable);
 
 // Add the invariant
@@ -122,5 +123,8 @@ CheckCorrectness();
 if (!IsCorrect)
   ...
 
+// Restore the state as it was before the call to SaveProverState().
 RestoreProverState();
+
+// From now on, correctness means satisfiability again.
 ```
