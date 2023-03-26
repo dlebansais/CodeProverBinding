@@ -135,4 +135,14 @@ In addition to predefined basic types such as `int`, C# manipulate objects, thro
 
 The library also provides methods to get reference constants, though in C# only one constant exists: `null`. Other references are generally anonymous objects and a code verifier would give them generated names.
 
-To get the `null` constant, either call `GetReferenceConstant(ReferenceIndex)`
+To get the `null` constant expression, either call `GetReferenceConstant(Reference.Null)` or (simpler alternative) get the `Null` property.
+
+## Predefined constants
+
+We have seen above that one can get the abstract reference expression representing `null`. The following predefined constants are available:
+
++ `False`
++ `True`
++ `Zero` (the integer 0)
++ `Null`
+
