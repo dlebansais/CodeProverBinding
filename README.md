@@ -128,3 +128,11 @@ RestoreProverState();
 
 // From now on, correctness means satisfiability again.
 ```
+
+## Abstract references
+
+In addition to predefined basic types such as `int`, C# manipulate objects, through references. Methods are available to create symbols that are references: `CreateReferenceSymbol(string)`, `CreateReferenceSymbolExpression(string)` and `CreateReferenceSymbolExpression(IReferenceSymbol)`.
+
+The library also provides methods to get reference constants, though in C# only one constant exists: `null`. Other references are generally anonymous objects and a code verifier would give them generated names.
+
+To get the `null` constant, either call `GetReferenceConstant(ReferenceIndex)`

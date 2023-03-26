@@ -19,4 +19,9 @@ public abstract class Sort : ISort
     /// Gets the floating point sort.
     /// </summary>
     public static IFloatingPointSort FloatingPoint { get; } = new FloatingPointSort();
+
+    /// <summary>
+    /// Gets the reference sort.
+    /// </summary>
+    public static IReferenceSort Reference { get; } = new ReferenceSort();
 }

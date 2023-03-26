@@ -140,6 +140,15 @@ public partial class Binder
     }
 
     /// <summary>
+    /// Creates a reference symbol with name <paramref name="name"/>.
+    /// </summary>
+    /// <param name="name">The symbol name.</param>
+    public IReferenceSymbol CreateReferenceSymbol(string name)
+    {
+        return new ReferenceSymbol(name);
+    }
+
+    /// <summary>
     /// Creates a boolean symbol expression with name <paramref name="name"/>.
     /// </summary>
     /// <param name="name">The symbol name.</param>
@@ -167,6 +176,15 @@ public partial class Binder
     }
 
     /// <summary>
+    /// Creates a reference symbol expression with name <paramref name="name"/>.
+    /// </summary>
+    /// <param name="name">The symbol name.</param>
+    public IReferenceSymbolExpression CreateReferenceSymbolExpression(string name)
+    {
+        return new ReferenceSymbolExpression(this, new ReferenceSymbol(name));
+    }
+
+    /// <summary>
     /// Creates a boolean symbol expression with symbol <paramref name="symbol"/>.
     /// </summary>
     /// <param name="symbol">The symbol.</param>
@@ -191,6 +209,15 @@ public partial class Binder
     public IFloatingPointSymbolExpression CreateFloatingPointSymbolExpression(IFloatingPointSymbol symbol)
     {
         return new FloatingPointSymbolExpression(this, symbol);
+    }
+
+    /// <summary>
+    /// Creates a reference symbol expression with symbol <paramref name="symbol"/>.
+    /// </summary>
+    /// <param name="symbol">The symbol.</param>
+    public IReferenceSymbolExpression CreateReferenceSymbolExpression(IReferenceSymbol symbol)
+    {
+        return new ReferenceSymbolExpression(this, symbol);
     }
 
     /// <summary>

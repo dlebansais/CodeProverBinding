@@ -1,5 +1,7 @@
 ﻿namespace CodeProverBinding;
 
+using System.Threading;
+
 /// <summary>
 /// Represents an index of references.
 /// </summary>
@@ -11,19 +13,19 @@ public record struct ReferenceIndex
     public static ReferenceIndex Null { get; } = new ReferenceIndex() { Internal = 0 };
 
     /// <summary>
-    /// Gets or sets the internal value of the index.
+    /// Gets the internal value of the index.
     /// </summary>
-    public int Internal { get; set; }
+    public int Internal { get; init; }
 
     /// <summary>
-    /// Return the index with an incremented internale value.
+    /// Returns a new reference.
     /// </summary>
-    public ReferenceIndex Increment()
+    public static ReferenceIndex New()
     {
-        ReferenceIndex Result = new ReferenceIndex() { Internal = Internal };
-
-        Internal++;
+        ReferenceIndex Result = new ReferenceIndex() { Internal = Interlocked.Increment(ref GlobalIndex) };
 
         return Result;
     }
+
+    private static int GlobalIndex = 0;
 }
