@@ -3,6 +3,6 @@
 /// <summary>
 /// Represents an floating point symbol expression.
 /// </summary>
-public interface IFloatingPointSymbolExpression : IArithmeticSymbolExpression<IFloatingPointSort>
+public interface IFloatingPointSymbolExpression : IArithmeticSymbolExpression<IFloatingPointSort>, IArithmeticExpression
 {
 }

@@ -3,6 +3,6 @@
 /// <summary>
 /// Provides information about an arithmetic expression.
 /// </summary>
-public interface IArithmeticExpression
+public interface IArithmeticExpression : IExpression
 {
 }

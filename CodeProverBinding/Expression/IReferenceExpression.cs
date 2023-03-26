@@ -3,6 +3,6 @@
 /// <summary>
 /// Provides information about a reference expression.
 /// </summary>
-public interface IReferenceExpression
+public interface IReferenceExpression : IExpression
 {
 }

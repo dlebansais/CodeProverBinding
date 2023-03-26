@@ -3,6 +3,6 @@
 /// <summary>
 /// Provides information about a boolean expression.
 /// </summary>
-public interface IBooleanExpression
+public interface IBooleanExpression : IExpression
 {
 }
