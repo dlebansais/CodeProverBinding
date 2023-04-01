@@ -15,6 +15,9 @@
 	<GenerateDocumentationFile>true</GenerateDocumentationFile>
 	<Authors>David Le Bansais</Authors>
 	<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <AssemblyVersion>1.0.0.1</AssemblyVersion>
+    <FileVersion>1.0.0.1</FileVersion>
+    <RepositoryUrl>https://github.com/dlebansais/CodeProverBinding</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
