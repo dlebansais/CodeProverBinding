@@ -14,4 +14,9 @@ public enum BinaryLogicalOperator
     /// The ∨ operator.
     /// </summary>
     Or,
+
+    /// <summary>
+    /// The ⇒ operator.
+    /// </summary>
+    Implies,
 }

@@ -8,4 +8,9 @@ internal record ObjectRefExprCapsule : IObjectRefExprCapsule, IExprCapsule
     Expr IExprCapsule.Item { get => Item; }
 
     required public Reference Index { get; init; }
+
+    public void Dispose()
+    {
+        Item.Dispose();
+    }
 }

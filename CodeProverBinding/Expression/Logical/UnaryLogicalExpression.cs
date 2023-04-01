@@ -2,11 +2,12 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 /// <summary>
 /// Represents a unary logical expression.
 /// </summary>
-public class UnaryLogicalExpression : Expression, IUnaryLogicalExpression, ILogicalExpression, IBooleanExpression
+public class UnaryLogicalExpression : Expression, IUnaryLogicalExpression
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="UnaryLogicalExpression"/> class.
@@ -38,4 +39,16 @@ public class UnaryLogicalExpression : Expression, IUnaryLogicalExpression, ILogi
     public IBooleanExpression Operand { get; }
 
     internal IBoolExprCapsule LogicalExpressionZ3 => (IBoolExprCapsule)ExpressionZ3;
+
+    /// <inheritdoc/>
+    public override string ToString()
+    {
+        Dictionary<UnaryLogicalOperator, string> OperatorTextTable = new()
+        {
+            { UnaryLogicalOperator.Not, "!" },
+        };
+
+        Debug.Assert(OperatorTextTable.ContainsKey(Operator));
+        return $"{OperatorTextTable[Operator]}({Operand})";
+    }
 }

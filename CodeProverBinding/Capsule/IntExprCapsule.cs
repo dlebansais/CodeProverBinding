@@ -7,4 +7,9 @@ internal record IntExprCapsule : IIntExprCapsule, IExprCapsule<IntExpr>, IArithE
     required public IntExpr Item { get; init; }
     ArithExpr IExprCapsule<ArithExpr>.Item { get => Item; }
     Expr IExprCapsule.Item { get => Item; }
+
+    public void Dispose()
+    {
+        Item.Dispose();
+    }
 }

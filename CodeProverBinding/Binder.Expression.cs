@@ -11,22 +11,27 @@ public partial class Binder
     /// <summary>
     /// Gets the constant representing the boolean false.
     /// </summary>
-    public IBooleanConstantExpression False { get; }
+    public IBooleanConstantExpression False { get; private set; } = null!;
 
     /// <summary>
     /// Gets the constant representing the boolean true.
     /// </summary>
-    public IBooleanConstantExpression True { get; }
+    public IBooleanConstantExpression True { get; private set; } = null!;
 
     /// <summary>
     /// Gets the constant representing the integer 0.
     /// </summary>
-    public IIntegerConstantExpression Zero { get; }
+    public IIntegerConstantExpression Zero { get; private set; } = null!;
+
+    /// <summary>
+    /// Gets the constant representing the integer 0.
+    /// </summary>
+    public IFloatingPointConstantExpression FloatingPointZero { get; private set; } = null!;
 
     /// <summary>
     /// Gets the constant representing the null reference.
     /// </summary>
-    public IReferenceConstantExpression Null { get; }
+    public IReferenceConstantExpression Null { get; private set; } = null!;
 
     /// <summary>
     /// Gets the boolean constant expression corresponding to <paramref name="value"/>.
@@ -98,6 +103,27 @@ public partial class Binder
             ConstantTable[value] = new FloatingPointConstantExpression(this, value);
 
         return (IFloatingPointConstantExpression)ConstantTable[value];
+    }
+
+    /// <summary>
+    /// Gets the reference constant expression corresponding to <paramref name="value"/>.
+    /// </summary>
+    /// <param name="value">The constant value.</param>
+    public IReferenceConstantExpression GetReferenceConstant(Reference value)
+    {
+        if (!ConstantTable.ContainsKey(value))
+            ConstantTable[value] = new ReferenceConstantExpression(this, value);
+
+        return (IReferenceConstantExpression)ConstantTable[value];
+    }
+
+    /// <summary>
+    /// Creates an array constant expression.
+    /// </summary>
+    /// <param name="value">The initializer.</param>
+    public IXxxArrayConstantExpression GetXxxArrayConstantExpression(IExpression value)
+    {
+        return new XxxArrayConstantExpression(this, value);
     }
 
     /// <summary>
@@ -191,6 +217,16 @@ public partial class Binder
     }
 
     /// <summary>
+    /// Creates an array reference symbol expression with name <paramref name="name"/>.
+    /// </summary>
+    /// <param name="name">The symbol name.</param>
+    /// <param name="elementSort">The element sort.</param>
+    public IXxxArraySymbolExpression CreateXxxArraySymbolExpression(string name, ISort elementSort)
+    {
+        return new XxxArraySymbolExpression(this, new XxxArraySymbol(name), elementSort);
+    }
+
+    /// <summary>
     /// Creates a boolean symbol expression with symbol <paramref name="symbol"/>.
     /// </summary>
     /// <param name="symbol">The symbol.</param>
@@ -253,10 +289,30 @@ public partial class Binder
     /// <exception cref="ArgumentException">The modulo operator is only supported with integer operands.</exception>
     public IBinaryArithmeticExpression CreateBinaryArithmeticExpression(IArithmeticExpression leftOperand, BinaryArithmeticOperator @operator, IArithmeticExpression rightOperand)
     {
-        if (@operator == BinaryArithmeticOperator.Modulo && (leftOperand is not IIntegerExpression || rightOperand is not IIntegerExpression))
-            throw new ArgumentException("The modulo operator is only supported with integer operands.");
+        bool IsLeftInteger = GetOperandExpressionAsInteger(leftOperand, out IIntegerExpression LeftIntegerOperand);
+        bool IsRightInteger = GetOperandExpressionAsInteger(rightOperand, out IIntegerExpression RightIntegerOperand);
 
-        return new BinaryArithmeticExpression(this, leftOperand, @operator, rightOperand);
+        if (IsLeftInteger && IsRightInteger)
+            return new IntegerBinaryArithmeticExpression(this, LeftIntegerOperand, @operator, RightIntegerOperand);
+        else
+        {
+            if (@operator == BinaryArithmeticOperator.Modulo)
+                throw new ArgumentException("The modulo operator is only supported with integer operands.");
+
+            return new BinaryArithmeticExpression(this, leftOperand, @operator, rightOperand);
+        }
+    }
+
+    private bool GetOperandExpressionAsInteger(IArithmeticExpression operand, out IIntegerExpression integerOperand)
+    {
+        if (operand is IIntegerExpression AsIntegerOperand)
+        {
+            integerOperand = AsIntegerOperand;
+            return true;
+        }
+
+        integerOperand = null!;
+        return false;
     }
 
     /// <summary>

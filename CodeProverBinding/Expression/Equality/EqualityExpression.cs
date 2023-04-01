@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 /// <summary>
 /// Represents an equality expression.
@@ -44,4 +45,17 @@ public class EqualityExpression : Expression, IEqualityExpression
     public IExpression RightOperand { get; }
 
     internal IBoolExprCapsule BooleanExpressionZ3 => (IBoolExprCapsule)ExpressionZ3;
+
+    /// <inheritdoc/>
+    public override string ToString()
+    {
+        Dictionary<EqualityOperator, string> OperatorTextTable = new()
+        {
+            { EqualityOperator.Equal, "==" },
+            { EqualityOperator.NotEqual, "!=" },
+        };
+
+        Debug.Assert(OperatorTextTable.ContainsKey(Operator));
+        return $"({LeftOperand}) {OperatorTextTable[Operator]} ({RightOperand})";
+    }
 }

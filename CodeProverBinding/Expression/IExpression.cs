@@ -1,9 +1,11 @@
 ﻿namespace CodeProverBinding;
 
+using System;
+
 /// <summary>
 /// Provides information about an expression.
 /// </summary>
-public interface IExpression
+public interface IExpression : IDisposable
 {
     /// <summary>
     /// Gets the binder.

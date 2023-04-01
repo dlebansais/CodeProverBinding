@@ -3,7 +3,7 @@
 /// <summary>
 /// Provides information about a comparison expression.
 /// </summary>
-public interface IComparisonExpression
+public interface IComparisonExpression : IBooleanExpression
 {
     /// <summary>
     /// Gets the left operand.

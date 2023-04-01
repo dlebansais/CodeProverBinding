@@ -2,11 +2,12 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 /// <summary>
 /// Represents a binary logical expression.
 /// </summary>
-public class BinaryLogicalExpression : Expression, IBinaryLogicalExpression, ILogicalExpression, IBooleanExpression
+public class BinaryLogicalExpression : Expression, IBinaryLogicalExpression
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="BinaryLogicalExpression"/> class.
@@ -28,6 +29,7 @@ public class BinaryLogicalExpression : Expression, IBinaryLogicalExpression, ILo
             {
                 { BinaryLogicalOperator.And, (IBoolExprCapsule left, IBoolExprCapsule right) => context.Context.MkAnd(left.Item, right.Item).Encapsulate() },
                 { BinaryLogicalOperator.Or, (IBoolExprCapsule left, IBoolExprCapsule right) => context.Context.MkOr(left.Item, right.Item).Encapsulate() },
+                { BinaryLogicalOperator.Implies, (IBoolExprCapsule left, IBoolExprCapsule right) => context.Context.MkImplies(left.Item, right.Item).Encapsulate() },
             };
 
             ExpressionZ3 = (IExprCapsule)BinaryLogical[Operator]((IBoolExprCapsule)((Expression)LeftOperand).ExpressionZ3, (IBoolExprCapsule)((Expression)RightOperand).ExpressionZ3);
@@ -44,4 +46,18 @@ public class BinaryLogicalExpression : Expression, IBinaryLogicalExpression, ILo
     public IBooleanExpression RightOperand { get; }
 
     internal IBoolExprCapsule LogicalExpressionZ3 => (IBoolExprCapsule)ExpressionZ3;
+
+    /// <inheritdoc/>
+    public override string ToString()
+    {
+        Dictionary<BinaryLogicalOperator, string> OperatorTextTable = new()
+        {
+            { BinaryLogicalOperator.Or, "||" },
+            { BinaryLogicalOperator.And, "&&" },
+            { BinaryLogicalOperator.Implies, "=>" },
+        };
+
+        Debug.Assert(OperatorTextTable.ContainsKey(Operator));
+        return $"({LeftOperand}) {OperatorTextTable[Operator]} ({RightOperand})";
+    }
 }

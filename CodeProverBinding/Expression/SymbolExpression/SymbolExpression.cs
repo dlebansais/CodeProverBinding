@@ -21,4 +21,10 @@ public abstract class SymbolExpression<TSort> : Expression, ISymbolExpression<TS
     /// <inheritdoc/>
     public ISymbol<TSort> Symbol { get; }
     ISymbol ISymbolExpression.Symbol { get => (ISymbol)Symbol; }
+
+    /// <inheritdoc/>
+    public override string ToString()
+    {
+        return Symbol.ToString();
+    }
 }

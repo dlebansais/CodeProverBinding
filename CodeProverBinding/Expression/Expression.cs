@@ -27,4 +27,12 @@ public abstract class Expression : IExpression
     }
 
     internal IExprCapsule ExpressionZ3 { get; private protected set; } = null!;
+
+    /// <summary>
+    /// Disposes of disposable references.
+    /// </summary>
+    public void Dispose()
+    {
+        ExpressionZ3.Dispose();
+    }
 }

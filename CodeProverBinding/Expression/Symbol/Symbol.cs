@@ -25,4 +25,10 @@ public abstract class Symbol<TSort> : ISymbol<TSort>
 
     /// <inheritdoc/>
     public abstract TSort Sort { get; }
+
+    /// <inheritdoc/>
+    public override string ToString()
+    {
+        return Name;
+    }
 }

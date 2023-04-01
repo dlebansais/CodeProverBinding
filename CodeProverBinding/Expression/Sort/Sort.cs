@@ -24,4 +24,10 @@ public abstract class Sort : ISort
     /// Gets the reference sort.
     /// </summary>
     public static IReferenceSort Reference { get; } = new ReferenceSort();
+
+    /// <summary>
+    /// Gets the Z3 sort.
+    /// </summary>
+    /// <param name="context">The Z3 context.</param>
+    public abstract Microsoft.Z3.Sort GetSortZ3(IProverContext context);
 }

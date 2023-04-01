@@ -2,9 +2,9 @@
 
 using Microsoft.Z3;
 
-internal record ArithExprCapsule : IArithExprCapsule<ArithExpr>, IArithExprCapsule, IExprCapsule
+internal record XxxArrayExprCapsule : IXxxArrayExprCapsule, IExprCapsule
 {
-    required public ArithExpr Item { get; init; }
+    required public Expr Item { get; init; }
     Expr IExprCapsule.Item { get => Item; }
 
     public void Dispose()

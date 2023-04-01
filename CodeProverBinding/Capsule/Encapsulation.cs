@@ -29,4 +29,9 @@ internal static class Encapsulation
     {
         return new RefExprCapsule() { Item = expr, Index = index };
     }
+
+    public static IXxxArrayExprCapsule Encapsulate(this ArrayExpr expr)
+    {
+        return new XxxArrayExprCapsule() { Item = expr };
+    }
 }

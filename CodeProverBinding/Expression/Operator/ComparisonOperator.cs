@@ -8,12 +8,12 @@ public enum ComparisonOperator
     /// <summary>
     /// The &lt; operator.
     /// </summary>
-    LessThan,
+    LesserThan,
 
     /// <summary>
     /// The ≤ operator.
     /// </summary>
-    LessThanOrEqual,
+    LesserThanEqualTo,
 
     /// <summary>
     /// The &gt; operator.
@@ -23,5 +23,5 @@ public enum ComparisonOperator
     /// <summary>
     /// The ≥ operator.
     /// </summary>
-    GreaterThanOrEqual,
+    GreaterThanEqualTo,
 }

@@ -27,28 +27,7 @@ public class BinaryArithmeticExpression : Expression, IBinaryArithmeticExpressio
 
         Binder.Binding(Prover.Z3, (ProverContextZ3 context) =>
         {
-            if (Operator == BinaryArithmeticOperator.Modulo)
-            {
-                bool IsLeftInteger = GetOperandExpressionZ3AsInteger(LeftOperand, out IIntExprCapsule LeftIntegerExpressionZ3);
-                bool IsRightInteger = GetOperandExpressionZ3AsInteger(RightOperand, out IIntExprCapsule RightIntegerExpressionZ3);
-
-                Debug.Assert(IsLeftInteger);
-                Debug.Assert(IsRightInteger);
-
-                ExpressionZ3 = (IExprCapsule)context.Context.MkMod(LeftIntegerExpressionZ3.Item, RightIntegerExpressionZ3.Item).Encapsulate();
-            }
-            else
-            {
-                Dictionary<BinaryArithmeticOperator, Func<IArithExprCapsule, IArithExprCapsule, IArithExprCapsule>> BinaryArithmetic = new()
-                {
-                    { BinaryArithmeticOperator.Add, (IArithExprCapsule left, IArithExprCapsule right) => context.Context.MkAdd(left.Item, right.Item).Encapsulate() },
-                    { BinaryArithmeticOperator.Subtract, (IArithExprCapsule left, IArithExprCapsule right) => context.Context.MkSub(left.Item, right.Item).Encapsulate() },
-                    { BinaryArithmeticOperator.Multiply, (IArithExprCapsule left, IArithExprCapsule right) => context.Context.MkMul(left.Item, right.Item).Encapsulate() },
-                    { BinaryArithmeticOperator.Divide, (IArithExprCapsule left, IArithExprCapsule right) => context.Context.MkDiv(left.Item, right.Item).Encapsulate() },
-                };
-
-                ExpressionZ3 = (IExprCapsule)BinaryArithmetic[Operator]((IArithExprCapsule)((Expression)LeftOperand).ExpressionZ3, (IArithExprCapsule)((Expression)RightOperand).ExpressionZ3);
-            }
+            ExpressionZ3 = (IExprCapsule)CombineZ3Operands(context);
         });
     }
 
@@ -63,15 +42,34 @@ public class BinaryArithmeticExpression : Expression, IBinaryArithmeticExpressio
 
     internal IArithExprCapsule ArithmeticExpressionZ3 => (IArithExprCapsule)ExpressionZ3;
 
-    private bool GetOperandExpressionZ3AsInteger(IArithmeticExpression operand, out IIntExprCapsule integerExpressionZ3)
+    private protected virtual IArithExprCapsule CombineZ3Operands(ProverContextZ3 context)
     {
-        if (operand is Expression AsExpression && AsExpression.ExpressionZ3 is IIntExprCapsule ExpressionZ3)
-        {
-            integerExpressionZ3 = ExpressionZ3;
-            return true;
-        }
+        Debug.Assert(Operator != BinaryArithmeticOperator.Modulo);
 
-        integerExpressionZ3 = null!;
-        return false;
+        Dictionary<BinaryArithmeticOperator, Func<IArithExprCapsule, IArithExprCapsule, IArithExprCapsule>> BinaryArithmetic = new()
+        {
+            { BinaryArithmeticOperator.Add, (IArithExprCapsule left, IArithExprCapsule right) => context.Context.MkAdd(left.Item, right.Item).Encapsulate() },
+            { BinaryArithmeticOperator.Subtract, (IArithExprCapsule left, IArithExprCapsule right) => context.Context.MkSub(left.Item, right.Item).Encapsulate() },
+            { BinaryArithmeticOperator.Multiply, (IArithExprCapsule left, IArithExprCapsule right) => context.Context.MkMul(left.Item, right.Item).Encapsulate() },
+            { BinaryArithmeticOperator.Divide, (IArithExprCapsule left, IArithExprCapsule right) => context.Context.MkDiv(left.Item, right.Item).Encapsulate() },
+        };
+
+        return BinaryArithmetic[Operator]((IArithExprCapsule)((Expression)LeftOperand).ExpressionZ3, (IArithExprCapsule)((Expression)RightOperand).ExpressionZ3);
+    }
+
+    /// <inheritdoc/>
+    public override string ToString()
+    {
+        Dictionary<BinaryArithmeticOperator, string> OperatorTextTable = new()
+        {
+            { BinaryArithmeticOperator.Add, "+" },
+            { BinaryArithmeticOperator.Subtract, "-" },
+            { BinaryArithmeticOperator.Multiply, "*" },
+            { BinaryArithmeticOperator.Divide, "/" },
+            { BinaryArithmeticOperator.Modulo, "%" },
+        };
+
+        Debug.Assert(OperatorTextTable.ContainsKey(Operator));
+        return $"({LeftOperand}) {OperatorTextTable[Operator]} ({RightOperand})";
     }
 }

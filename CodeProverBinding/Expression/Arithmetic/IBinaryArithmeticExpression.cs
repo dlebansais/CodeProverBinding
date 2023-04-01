@@ -3,7 +3,7 @@
 /// <summary>
 /// Provides information about a binary arithmetic expression.
 /// </summary>
-public interface IBinaryArithmeticExpression
+public interface IBinaryArithmeticExpression : IArithmeticExpression
 {
     /// <summary>
     /// Gets the left operand.

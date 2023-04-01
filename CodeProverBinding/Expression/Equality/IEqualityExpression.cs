@@ -3,7 +3,7 @@
 /// <summary>
 /// Provides information about an equality expression.
 /// </summary>
-public interface IEqualityExpression
+public interface IEqualityExpression : IBooleanExpression
 {
     /// <summary>
     /// Gets the left operand.

@@ -3,7 +3,7 @@
 /// <summary>
 /// Provides information about a unary arithmetic expression.
 /// </summary>
-public interface IUnaryArithmeticExpression
+public interface IUnaryArithmeticExpression : IArithmeticExpression
 {
     /// <summary>
     /// Gets the operator.

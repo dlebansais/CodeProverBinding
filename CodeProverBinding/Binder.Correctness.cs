@@ -1,5 +1,7 @@
 ﻿namespace CodeProverBinding;
 
+using System;
+
 /// <summary>
 /// Provides bindings for code provers.
 /// </summary>
@@ -15,6 +17,8 @@ public partial class Binder
         if (IsStateSaved)
             throw new CodeProverException("Prover state already saved.");
 
+        Binding(Prover.Z3, (ProverContextZ3 context) => context.Solver.Push());
+
         CorrectnessCheckType = correctnessCheckType;
         IsStateSaved = true;
     }
@@ -27,6 +31,8 @@ public partial class Binder
     {
         if (!IsStateSaved)
             throw new CodeProverException("Prover state not saved.");
+
+        Binding(Prover.Z3, (ProverContextZ3 context) => context.Solver.Pop());
 
         CorrectnessCheckType = CorrectnessCheckType.Satisfiable;
         IsStateSaved = false;
@@ -41,10 +47,24 @@ public partial class Binder
 
         Binding(Prover.Z3, (ProverContextZ3 context) =>
         {
-            if (CorrectnessCheckType == CorrectnessCheckType.Satisfiable)
-                IsCorrect = context.Solver.Check() == Microsoft.Z3.Status.SATISFIABLE;
+            bool IsSatisfied = context.Solver.Check() == Microsoft.Z3.Status.SATISFIABLE;
+
+            if (IsSatisfied)
+            {
+                string ModelString = context.Solver.Model.ToString();
+                ModelString = ModelString.Replace("\r\n", "\n");
+                ModelString = ModelString.Replace("\r", "\n");
+                ModelString = ModelString.Replace("\n", Environment.NewLine);
+
+                SatisfiedModel = ModelString;
+            }
             else
-                IsCorrect = context.Solver.Check() != Microsoft.Z3.Status.SATISFIABLE;
+                SatisfiedModel = string.Empty;
+
+            if (CorrectnessCheckType == CorrectnessCheckType.Satisfiable)
+                IsCorrect = IsSatisfied;
+            else
+                IsCorrect = !IsSatisfied;
         });
     }
 
@@ -62,4 +82,9 @@ public partial class Binder
     /// Gets a value indicating whether the system is correct.
     /// </summary>
     public bool IsCorrect { get; private set; }
+
+    /// <summary>
+    /// Gets the model that satisfies constraints.
+    /// </summary>
+    public string SatisfiedModel { get; private set; } = string.Empty;
 }

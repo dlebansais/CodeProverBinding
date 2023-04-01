@@ -21,4 +21,10 @@ public abstract class ConstantExpression<TValue> : Expression, IConstantExpressi
     /// <inheritdoc/>
     public TValue Value { get; }
     object IConstantExpression.Value { get => Value; }
+
+    /// <inheritdoc/>
+    public override string ToString()
+    {
+        return Value.ToString();
+    }
 }

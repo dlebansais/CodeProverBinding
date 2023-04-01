@@ -39,4 +39,16 @@ public class UnaryArithmeticExpression : Expression, IUnaryArithmeticExpression,
     public IArithmeticExpression Operand { get; }
 
     internal IArithExprCapsule ArithmeticExpressionZ3 => (IArithExprCapsule)ExpressionZ3;
+
+    /// <inheritdoc/>
+    public override string ToString()
+    {
+        Dictionary<UnaryArithmeticOperator, string> OperatorTextTable = new()
+        {
+            { UnaryArithmeticOperator.Minus, "-" },
+        };
+
+        Debug.Assert(OperatorTextTable.ContainsKey(Operator));
+        return $"{OperatorTextTable[Operator]}({Operand})";
+    }
 }

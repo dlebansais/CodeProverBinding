@@ -3,7 +3,7 @@
 /// <summary>
 /// Provides information about a unary logical expression.
 /// </summary>
-public interface IUnaryLogicalExpression
+public interface IUnaryLogicalExpression : ILogicalExpression
 {
     /// <summary>
     /// Gets the operator.

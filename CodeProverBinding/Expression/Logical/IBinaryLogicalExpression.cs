@@ -3,7 +3,7 @@
 /// <summary>
 /// Provides information about a binary logical expression.
 /// </summary>
-public interface IBinaryLogicalExpression
+public interface IBinaryLogicalExpression : ILogicalExpression
 {
     /// <summary>
     /// Gets the left operand.

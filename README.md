@@ -137,7 +137,7 @@ The library also provides methods to get reference constants, though in C# only 
 
 To get the `null` constant expression, get the `Binding.Null` property.
 
-The library allows to further distinguish between references to objects or reference to arrays, using `CreateObjectReferenceSymbolExpression` and `CreateArrayReferenceSymbolExpression` methods.
+The library allows to further distinguish between references to objects or references to arrays, using `CreateObjectReferenceSymbolExpression` and `CreateArrayReferenceSymbolExpression` methods.
 
 ## Predefined constants
 
@@ -146,5 +146,6 @@ We have seen above that one can get the abstract reference expression representi
 + `False`
 + `True`
 + `Zero` (the integer 0)
++ `FloatingPointZero` (the floating point 0)
 + `Null`
 
