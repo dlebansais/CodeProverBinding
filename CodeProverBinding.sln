@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33414.496
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeProverBinding", "CodeProverBinding\CodeProverBinding.csproj", "{605E055A-A275-4920-963D-251FEC5616B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeProverBinding", "CodeProverBinding\CodeProverBinding.csproj", "{605E055A-A275-4920-963D-251FEC5616B9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeProverBinding.Test", "Test\CodeProverBinding.Test\CodeProverBinding.Test.csproj", "{0DC77D01-7193-434C-8830-A48539F0CFFC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{605E055A-A275-4920-963D-251FEC5616B9}.Debug|x64.Build.0 = Debug|x64
 		{605E055A-A275-4920-963D-251FEC5616B9}.Release|x64.ActiveCfg = Release|x64
 		{605E055A-A275-4920-963D-251FEC5616B9}.Release|x64.Build.0 = Release|x64
+		{0DC77D01-7193-434C-8830-A48539F0CFFC}.Debug|x64.ActiveCfg = Debug|x64
+		{0DC77D01-7193-434C-8830-A48539F0CFFC}.Debug|x64.Build.0 = Debug|x64
+		{0DC77D01-7193-434C-8830-A48539F0CFFC}.Release|x64.ActiveCfg = Release|Any CPU
+		{0DC77D01-7193-434C-8830-A48539F0CFFC}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
