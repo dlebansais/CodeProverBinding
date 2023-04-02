@@ -20,4 +20,10 @@ public class FloatingPointConstantExpression : ConstantExpression<double>, IFloa
     }
 
     internal IArithExprCapsule ArithmeticExpressionZ3 => (IArithExprCapsule)ExpressionZ3;
+
+    /// <inheritdoc/>
+    public override string ToString()
+    {
+        return Value.ToString(CultureInfo.InvariantCulture);
+    }
 }

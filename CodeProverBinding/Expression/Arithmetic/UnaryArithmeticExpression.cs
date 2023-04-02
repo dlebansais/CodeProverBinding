@@ -23,12 +23,7 @@ public class UnaryArithmeticExpression : Expression, IUnaryArithmeticExpression,
 
         Binder.Binding(Prover.Z3, (ProverContextZ3 context) =>
         {
-            Dictionary<UnaryArithmeticOperator, Func<IArithExprCapsule, IArithExprCapsule>> UnaryArithmetic = new()
-            {
-                { UnaryArithmeticOperator.Minus, (IArithExprCapsule operand) => context.Context.MkUnaryMinus(operand.Item).Encapsulate() },
-            };
-
-            ExpressionZ3 = (IExprCapsule)UnaryArithmetic[Operator]((IArithExprCapsule)((Expression)Operand).ExpressionZ3);
+            ExpressionZ3 = (IExprCapsule)CombineZ3Operands(context);
         });
     }
 
@@ -39,6 +34,16 @@ public class UnaryArithmeticExpression : Expression, IUnaryArithmeticExpression,
     public IArithmeticExpression Operand { get; }
 
     internal IArithExprCapsule ArithmeticExpressionZ3 => (IArithExprCapsule)ExpressionZ3;
+
+    private protected virtual IArithExprCapsule CombineZ3Operands(ProverContextZ3 context)
+    {
+        Dictionary<UnaryArithmeticOperator, Func<IArithExprCapsule, IArithExprCapsule>> UnaryArithmetic = new()
+        {
+            { UnaryArithmeticOperator.Minus, (IArithExprCapsule operand) => context.Context.MkUnaryMinus(operand.Item).Encapsulate() },
+        };
+
+        return UnaryArithmetic[Operator]((IArithExprCapsule)((Expression)Operand).ExpressionZ3);
+    }
 
     /// <inheritdoc/>
     public override string ToString()

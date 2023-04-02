@@ -303,18 +303,6 @@ public partial class Binder
         }
     }
 
-    private bool GetOperandExpressionAsInteger(IArithmeticExpression operand, out IIntegerExpression integerOperand)
-    {
-        if (operand is IIntegerExpression AsIntegerOperand)
-        {
-            integerOperand = AsIntegerOperand;
-            return true;
-        }
-
-        integerOperand = null!;
-        return false;
-    }
-
     /// <summary>
     /// Creates a unary arithmetic expression.
     /// </summary>
@@ -322,7 +310,12 @@ public partial class Binder
     /// <param name="operand">The operand.</param>
     public IUnaryArithmeticExpression CreateUnaryArithmeticExpression(UnaryArithmeticOperator @operator, IArithmeticExpression operand)
     {
-        return new UnaryArithmeticExpression(this, @operator, operand);
+        bool IsInteger = GetOperandExpressionAsInteger(operand, out IIntegerExpression IntegerOperand);
+
+        if (IsInteger)
+            return new IntegerUnaryArithmeticExpression(this, @operator, IntegerOperand);
+        else
+            return new UnaryArithmeticExpression(this, @operator, operand);
     }
 
     /// <summary>
@@ -366,6 +359,18 @@ public partial class Binder
     public IEqualityExpression CreateEqualityExpression(IExpression leftOperand, EqualityOperator @operator, IExpression rightOperand)
     {
         return new EqualityExpression(this, leftOperand, @operator, rightOperand);
+    }
+
+    private bool GetOperandExpressionAsInteger(IArithmeticExpression operand, out IIntegerExpression integerOperand)
+    {
+        if (operand is IIntegerExpression AsIntegerOperand)
+        {
+            integerOperand = AsIntegerOperand;
+            return true;
+        }
+
+        integerOperand = null!;
+        return false;
     }
 
     private Dictionary<object, IConstantExpression> ConstantTable = new();

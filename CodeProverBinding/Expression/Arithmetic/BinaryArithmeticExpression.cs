@@ -7,7 +7,7 @@ using System.Diagnostics;
 /// <summary>
 /// Represents a binary arithmetic expression.
 /// </summary>
-public class BinaryArithmeticExpression : Expression, IBinaryArithmeticExpression, IArithmeticExpression
+public class BinaryArithmeticExpression : Expression, IBinaryArithmeticExpression
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="BinaryArithmeticExpression"/> class.

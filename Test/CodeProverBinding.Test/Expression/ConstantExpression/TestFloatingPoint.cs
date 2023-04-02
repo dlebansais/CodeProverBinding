@@ -12,6 +12,7 @@ public class TestFloatingPoint
     {
         using Binder Binder = Tools.CreateBinder();
         double TestValue = 1.1;
+        string TestValueText = "1.1";
         using FloatingPointConstantExpression TestObject = new(Binder, TestValue);
 
         Assert.That(TestObject.Binder, Is.EqualTo(Binder));
@@ -19,7 +20,7 @@ public class TestFloatingPoint
         Assert.True(TestObject.ExpressionZ3.Item is ArithExpr);
         Assert.True(TestObject.ArithmeticExpressionZ3 is IArithExprCapsule);
         Assert.True(TestObject.ArithmeticExpressionZ3.Item is ArithExpr);
-        Assert.That(TestObject.ToString(), Is.EqualTo($"{TestValue}"));
+        Assert.That(TestObject.ToString(), Is.EqualTo(TestValueText));
     }
 
     [Test]
@@ -59,11 +60,12 @@ public class TestFloatingPoint
     {
         using Binder Binder = Tools.CreateBinder();
         double TestValue = 1.1;
+        string TestValueText = "1.1";
         using IConstantExpression TestObject = new FloatingPointConstantExpression(Binder, TestValue);
 
         Assert.That(TestObject.Binder, Is.EqualTo(Binder));
         Assert.That(TestObject.Value, Is.EqualTo(TestValue));
-        Assert.That(TestObject.ToString(), Is.EqualTo($"{TestValue}"));
+        Assert.That(TestObject.ToString(), Is.EqualTo(TestValueText));
     }
 
     [Test]
