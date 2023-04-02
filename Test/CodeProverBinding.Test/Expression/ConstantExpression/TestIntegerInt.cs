@@ -23,6 +23,20 @@ public class TestIntegerInt
     }
 
     [Test]
+    public void Zero()
+    {
+        using Binder Binder = Tools.CreateBinder();
+        IntegerConstantExpressionInt Zero = (IntegerConstantExpressionInt)Binder.Zero;
+
+        Assert.That(Zero.Binder, Is.EqualTo(Binder));
+        Assert.That(Zero.Value, Is.EqualTo(0));
+        Assert.True(Zero.ExpressionZ3.Item is IntExpr);
+        Assert.True(Zero.IntegerExpressionZ3 is IIntExprCapsule);
+        Assert.True(Zero.IntegerExpressionZ3.Item is IntExpr);
+        Assert.That(Zero.ToString(), Is.EqualTo("0"));
+    }
+
+    [Test]
     public void Interface_IIntegerConstantExpression()
     {
         using Binder Binder = Tools.CreateBinder();

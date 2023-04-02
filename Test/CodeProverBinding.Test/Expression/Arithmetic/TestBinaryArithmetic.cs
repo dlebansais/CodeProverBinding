@@ -113,6 +113,16 @@ public class TestBinaryArithmetic
     }
 
     [Test]
+    public void TestModuloInteger()
+    {
+        using Binder Binder = Tools.CreateBinder();
+        using BinaryArithmeticExpression TestObject = CreateIntegerTestObject(Binder, BinaryArithmeticOperator.Modulo);
+
+        Assert.True(TestObject is IIntegerExpression);
+        Assert.That(TestObject.ToString(), Is.EqualTo($"(1) % (2)"));
+    }
+
+    [Test]
     public void TestAddFloatingPoint()
     {
         using Binder Binder = Tools.CreateBinder();

@@ -24,6 +24,21 @@ public class TestReference
     }
 
     [Test]
+    public void Null()
+    {
+        using Binder Binder = Tools.CreateBinder();
+        ReferenceConstantExpression Null = (ReferenceConstantExpression)Binder.Null;
+
+        Assert.That(Null.Binder, Is.EqualTo(Binder));
+        Assert.That(Null.Value, Is.EqualTo(Reference.Null));
+        Assert.True(Null.ExpressionZ3.Item is ArithExpr);
+        Assert.True(Null.ReferenceExpressionZ3 is IRefExprCapsule);
+        Assert.True(Null.ReferenceExpressionZ3.Item is IntExpr);
+        Assert.That(Null.ReferenceExpressionZ3.Index, Is.EqualTo(Reference.Null));
+        Assert.That(Null.ToString(), Is.EqualTo($"{Reference.Null}"));
+    }
+
+    [Test]
     public void Interface_IReferenceConstantExpression()
     {
         using Binder Binder = Tools.CreateBinder();

@@ -24,6 +24,20 @@ public class TestFloatingPoint
     }
 
     [Test]
+    public void Zero()
+    {
+        using Binder Binder = Tools.CreateBinder();
+        FloatingPointConstantExpression Zero = (FloatingPointConstantExpression)Binder.FloatingPointZero;
+
+        Assert.That(Zero.Binder, Is.EqualTo(Binder));
+        Assert.That(Zero.Value, Is.EqualTo(0));
+        Assert.True(Zero.ExpressionZ3.Item is ArithExpr);
+        Assert.True(Zero.ArithmeticExpressionZ3 is IArithExprCapsule);
+        Assert.True(Zero.ArithmeticExpressionZ3.Item is ArithExpr);
+        Assert.That(Zero.ToString(), Is.EqualTo("0"));
+    }
+
+    [Test]
     public void Interface_IFloatingPointConstantExpression()
     {
         using Binder Binder = Tools.CreateBinder();

@@ -23,6 +23,34 @@ public class TestBoolean
     }
 
     [Test]
+    public void False()
+    {
+        using Binder Binder = Tools.CreateBinder();
+        BooleanConstantExpression False = (BooleanConstantExpression)Binder.False;
+
+        Assert.That(False.Binder, Is.EqualTo(Binder));
+        Assert.That(False.Value, Is.EqualTo(false));
+        Assert.True(False.ExpressionZ3.Item is BoolExpr);
+        Assert.True(False.BooleanExpressionZ3 is IBoolExprCapsule);
+        Assert.True(False.BooleanExpressionZ3.Item is BoolExpr);
+        Assert.That(False.ToString(), Is.EqualTo("False"));
+    }
+
+    [Test]
+    public void True()
+    {
+        using Binder Binder = Tools.CreateBinder();
+        BooleanConstantExpression True = (BooleanConstantExpression)Binder.True;
+
+        Assert.That(True.Binder, Is.EqualTo(Binder));
+        Assert.That(True.Value, Is.EqualTo(true));
+        Assert.True(True.ExpressionZ3.Item is BoolExpr);
+        Assert.True(True.BooleanExpressionZ3 is IBoolExprCapsule);
+        Assert.True(True.BooleanExpressionZ3.Item is BoolExpr);
+        Assert.That(True.ToString(), Is.EqualTo("True"));
+    }
+
+    [Test]
     public void Interface_IBooleanConstantExpression()
     {
         using Binder Binder = Tools.CreateBinder();

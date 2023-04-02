@@ -24,6 +24,8 @@ public class TestIntegerBinaryArithmetic
         Assert.True(TestObject.ExpressionZ3.Item is ArithExpr);
         Assert.True(TestObject.ArithmeticExpressionZ3 is IArithExprCapsule);
         Assert.True(TestObject.ArithmeticExpressionZ3.Item is ArithExpr);
+        Assert.True(TestObject.IntegerExpressionZ3 is IIntExprCapsule);
+        Assert.True(TestObject.IntegerExpressionZ3.Item is IntExpr);
         Assert.That(TestObject.ToString(), Is.EqualTo($"({TestLeftOperand}) {TestOperatorText} ({TestRightOperand})"));
     }
 
