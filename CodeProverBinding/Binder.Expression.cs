@@ -76,7 +76,7 @@ public partial class Binder
     public IIntegerConstantExpression GetIntegerConstant(uint value)
     {
         if (!ConstantTable.ContainsKey(value))
-            ConstantTable[value] = new IntegerConstantExpressionUint(this, value);
+            ConstantTable[value] = new IntegerConstantExpressionUInt(this, value);
 
         return (IIntegerConstantExpression)ConstantTable[value];
     }
@@ -88,7 +88,7 @@ public partial class Binder
     public IIntegerConstantExpression GetIntegerConstant(ulong value)
     {
         if (!ConstantTable.ContainsKey(value))
-            ConstantTable[value] = new IntegerConstantExpressionUlong(this, value);
+            ConstantTable[value] = new IntegerConstantExpressionULong(this, value);
 
         return (IIntegerConstantExpression)ConstantTable[value];
     }

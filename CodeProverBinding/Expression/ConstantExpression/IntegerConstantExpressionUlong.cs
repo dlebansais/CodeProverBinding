@@ -3,14 +3,14 @@
 /// <summary>
 /// Represents a 64-bits signed integer constant expression.
 /// </summary>
-public class IntegerConstantExpressionUlong : IntegerConstantExpression<ulong>
+public class IntegerConstantExpressionULong : IntegerConstantExpression<ulong>
 {
     /// <summary>
-    /// Initializes a new instance of the <see cref="IntegerConstantExpressionUlong"/> class.
+    /// Initializes a new instance of the <see cref="IntegerConstantExpressionULong"/> class.
     /// </summary>
     /// <param name="binder">The binder.</param>
     /// <param name="value">The constant value.</param>
-    public IntegerConstantExpressionUlong(Binder binder, ulong value)
+    public IntegerConstantExpressionULong(Binder binder, ulong value)
         : base(binder, value)
     {
         Binder.Binding(Prover.Z3, (ProverContextZ3 context) => { ExpressionZ3 = (IExprCapsule)context.Context.MkInt(value).Encapsulate(); });

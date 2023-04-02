@@ -16,5 +16,5 @@ public class ReferenceConstantExpression : ConstantExpression<Reference>, IRefer
         Binder.Binding(Prover.Z3, (ProverContextZ3 context) => { ExpressionZ3 = (IExprCapsule)context.Context.MkInt(value.Internal).EncapsulateAsRef(value); });
     }
 
-    internal IIntExprCapsule ReferenceExpressionZ3 => (IIntExprCapsule)ExpressionZ3;
+    internal IRefExprCapsule ReferenceExpressionZ3 => (IRefExprCapsule)ExpressionZ3;
 }

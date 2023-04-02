@@ -17,7 +17,10 @@ public abstract class Expression : IExpression
     /// <inheritdoc/>
     public Binder Binder { get; }
 
-    /// <inheritdoc/>
+    /// <summary>
+    /// Asserts the expression as true for the prover.
+    /// </summary>
+    /// <exception cref="CodeProverException">Only boolean expressions can be asserted.</exception>
     public void Assert()
     {
         if (ExpressionZ3.Item is Microsoft.Z3.BoolExpr BooleanExpression)

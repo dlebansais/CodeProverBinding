@@ -5,7 +5,7 @@ using Microsoft.Z3;
 using NUnit.Framework;
 
 [TestFixture]
-public class Boolean
+public class TestBoolean
 {
     [Test]
     public void BasicTest()
@@ -17,6 +17,7 @@ public class Boolean
         Assert.That(TestObject.Binder, Is.EqualTo(Binder));
         Assert.That(TestObject.Value, Is.EqualTo(TestValue));
         Assert.True(TestObject.ExpressionZ3.Item is BoolExpr);
+        Assert.True(TestObject.BooleanExpressionZ3 is IBoolExprCapsule);
         Assert.True(TestObject.BooleanExpressionZ3.Item is BoolExpr);
         Assert.That(TestObject.ToString(), Is.EqualTo($"{TestObject.Value}"));
     }
