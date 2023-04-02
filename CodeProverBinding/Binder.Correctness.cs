@@ -47,7 +47,8 @@ public partial class Binder
 
         Binding(Prover.Z3, (ProverContextZ3 context) =>
         {
-            bool IsSatisfied = context.Solver.Check() == Microsoft.Z3.Status.SATISFIABLE;
+            Microsoft.Z3.Status Status = context.Solver.Check();
+            bool IsSatisfied = Status == Microsoft.Z3.Status.SATISFIABLE;
 
             if (IsSatisfied)
             {
