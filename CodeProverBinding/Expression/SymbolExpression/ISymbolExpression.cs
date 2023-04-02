@@ -3,7 +3,7 @@
 /// <summary>
 /// Represents a symbol expression.
 /// </summary>
-public interface ISymbolExpression
+public interface ISymbolExpression : IExpression
 {
     /// <summary>
     /// Gets the symbol.

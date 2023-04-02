@@ -10,24 +10,24 @@ public class TestFloatingPoint
     [Test]
     public void BasicTest()
     {
-        Binder Binder = Tools.CreateBinder();
+        using Binder Binder = Tools.CreateBinder();
         double TestValue = 1.1;
-        FloatingPointConstantExpression TestObject = new(Binder, TestValue);
+        using FloatingPointConstantExpression TestObject = new(Binder, TestValue);
 
         Assert.That(TestObject.Binder, Is.EqualTo(Binder));
         Assert.That(TestObject.Value, Is.EqualTo(TestValue));
         Assert.True(TestObject.ExpressionZ3.Item is ArithExpr);
         Assert.True(TestObject.ArithmeticExpressionZ3 is IArithExprCapsule);
         Assert.True(TestObject.ArithmeticExpressionZ3.Item is ArithExpr);
-        Assert.That(TestObject.ToString(), Is.EqualTo($"{TestObject.Value}"));
+        Assert.That(TestObject.ToString(), Is.EqualTo($"{TestValue}"));
     }
 
     [Test]
     public void Interface_IFloatingPointConstantExpression()
     {
-        Binder Binder = Tools.CreateBinder();
+        using Binder Binder = Tools.CreateBinder();
         double TestValue = 1.1;
-        IFloatingPointConstantExpression TestObject = new FloatingPointConstantExpression(Binder, TestValue);
+        using IFloatingPointConstantExpression TestObject = new FloatingPointConstantExpression(Binder, TestValue);
 
         Assert.That(TestObject.Binder, Is.EqualTo(Binder));
         Assert.That(TestObject.Value, Is.EqualTo(TestValue));
@@ -36,9 +36,9 @@ public class TestFloatingPoint
     [Test]
     public void Interface_IConstantExpressionGeneric()
     {
-        Binder Binder = Tools.CreateBinder();
+        using Binder Binder = Tools.CreateBinder();
         double TestValue = 1.1;
-        IConstantExpression<double> TestObject = new FloatingPointConstantExpression(Binder, TestValue);
+        using IConstantExpression<double> TestObject = new FloatingPointConstantExpression(Binder, TestValue);
 
         Assert.That(TestObject.Binder, Is.EqualTo(Binder));
         Assert.That(TestObject.Value, Is.EqualTo(TestValue));
@@ -47,9 +47,9 @@ public class TestFloatingPoint
     [Test]
     public void Interface_IArithmeticExpression()
     {
-        Binder Binder = Tools.CreateBinder();
+        using Binder Binder = Tools.CreateBinder();
         double TestValue = 1.1;
-        IArithmeticExpression TestObject = new FloatingPointConstantExpression(Binder, TestValue);
+        using IArithmeticExpression TestObject = new FloatingPointConstantExpression(Binder, TestValue);
 
         Assert.That(TestObject.Binder, Is.EqualTo(Binder));
     }
@@ -57,9 +57,9 @@ public class TestFloatingPoint
     [Test]
     public void Interface_IConstantExpression()
     {
-        Binder Binder = Tools.CreateBinder();
+        using Binder Binder = Tools.CreateBinder();
         double TestValue = 1.1;
-        IConstantExpression TestObject = new FloatingPointConstantExpression(Binder, TestValue);
+        using IConstantExpression TestObject = new FloatingPointConstantExpression(Binder, TestValue);
 
         Assert.That(TestObject.Binder, Is.EqualTo(Binder));
         Assert.That(TestObject.Value, Is.EqualTo(TestValue));
@@ -69,9 +69,9 @@ public class TestFloatingPoint
     [Test]
     public void Interface_IExpression()
     {
-        Binder Binder = Tools.CreateBinder();
+        using Binder Binder = Tools.CreateBinder();
         double TestValue = 1.1;
-        IExpression TestObject = new FloatingPointConstantExpression(Binder, TestValue);
+        using IExpression TestObject = new FloatingPointConstantExpression(Binder, TestValue);
 
         Assert.That(TestObject.Binder, Is.EqualTo(Binder));
     }
@@ -79,9 +79,9 @@ public class TestFloatingPoint
     [Test]
     public void TestAssert()
     {
-        Binder Binder = Tools.CreateBinder();
+        using Binder Binder = Tools.CreateBinder();
         double TestValue = 1.1;
-        FloatingPointConstantExpression TestObject = new(Binder, TestValue);
+        using FloatingPointConstantExpression TestObject = new(Binder, TestValue);
 
         Assert.Throws<CodeProverException>(TestObject.Assert);
     }

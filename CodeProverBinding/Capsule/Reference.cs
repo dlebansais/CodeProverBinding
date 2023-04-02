@@ -27,5 +27,11 @@ public record struct Reference
         return Result;
     }
 
+    /// <inheritdoc/>
+    public override string ToString()
+    {
+        return Internal == 0 ? "Null" : $"&{Internal,8:X}";
+    }
+
     private static int GlobalIndex = 0;
 }
