@@ -15,7 +15,7 @@ public class TestBoolean
         Assert.That(TestObject.Name, Is.EqualTo(TestName));
         Assert.True(TestObject.Sort is IBooleanSort);
         Assert.That(TestObject.Sort, Is.EqualTo(Sort.Boolean));
-        Assert.That(TestObject.ToString(), Is.EqualTo($"{TestName}"));
+        Assert.That(TestObject.ToString(), Is.EqualTo(TestName));
     }
 
     [Test]

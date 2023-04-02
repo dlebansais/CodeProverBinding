@@ -15,7 +15,7 @@ public class TestFloatingPoint
         Assert.That(TestObject.Name, Is.EqualTo(TestName));
         Assert.True(TestObject.Sort is IFloatingPointSort);
         Assert.That(TestObject.Sort, Is.EqualTo(Sort.FloatingPoint));
-        Assert.That(TestObject.ToString(), Is.EqualTo($"{TestName}"));
+        Assert.That(TestObject.ToString(), Is.EqualTo(TestName));
     }
 
     [Test]

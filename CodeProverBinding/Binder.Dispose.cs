@@ -47,9 +47,8 @@ public partial class Binder : IDisposable
     /// </summary>
     private void DisposeNow()
     {
-        if (ContextZ3 is not null)
-            using (ContextZ3)
-            {
-            }
+        using (ContextZ3)
+        {
+        }
     }
 }

@@ -15,7 +15,7 @@ public class TestReference
         Assert.That(TestObject.Name, Is.EqualTo(TestName));
         Assert.True(TestObject.Sort is IReferenceSort);
         Assert.That(TestObject.Sort, Is.EqualTo(Sort.Reference));
-        Assert.That(TestObject.ToString(), Is.EqualTo($"{TestName}"));
+        Assert.That(TestObject.ToString(), Is.EqualTo(TestName));
     }
 
     [Test]

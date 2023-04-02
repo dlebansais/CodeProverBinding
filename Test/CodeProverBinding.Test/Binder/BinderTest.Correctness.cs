@@ -58,6 +58,12 @@ public partial class BinderTest
         Assert.False(TestBinder.IsStateSaved);
         Assert.False(TestBinder.IsCorrect);
         Assert.That(TestBinder.CorrectnessCheckType, Is.EqualTo(CorrectnessCheckType.Satisfiable));
+
+        TestBinder.SaveProverState(CorrectnessCheckType.Satisfiable);
+        Assert.Throws<CodeProverException>(() => TestBinder.SaveProverState(CorrectnessCheckType.Satisfiable));
+
+        TestBinder.RestoreProverState();
+        Assert.Throws<CodeProverException>(() => TestBinder.RestoreProverState());
     }
 
     [Test]

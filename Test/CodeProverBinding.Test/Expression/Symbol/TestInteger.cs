@@ -15,7 +15,7 @@ public class TestInteger
         Assert.That(TestObject.Name, Is.EqualTo(TestName));
         Assert.True(TestObject.Sort is IIntegerSort);
         Assert.That(TestObject.Sort, Is.EqualTo(Sort.Integer));
-        Assert.That(TestObject.ToString(), Is.EqualTo($"{TestName}"));
+        Assert.That(TestObject.ToString(), Is.EqualTo(TestName));
     }
 
     [Test]
