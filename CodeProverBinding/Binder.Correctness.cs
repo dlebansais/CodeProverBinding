@@ -5,7 +5,7 @@ using System;
 /// <summary>
 /// Provides bindings for code provers.
 /// </summary>
-public partial class Binder
+public partial class Binder : IDisposable
 {
     /// <summary>
     /// Saves the current prover state, indicating whether the next check should be for or against satifiability.

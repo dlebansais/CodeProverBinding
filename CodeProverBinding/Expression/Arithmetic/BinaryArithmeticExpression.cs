@@ -19,7 +19,10 @@ public class BinaryArithmeticExpression : Expression, IBinaryArithmeticExpressio
     public BinaryArithmeticExpression(Binder binder, IArithmeticExpression leftOperand, BinaryArithmeticOperator @operator, IArithmeticExpression rightOperand)
         : base(binder)
     {
-        Debug.Assert(@operator != BinaryArithmeticOperator.Modulo || (leftOperand is IIntegerExpression && rightOperand is IIntegerExpression));
+        bool IsNotModulo = @operator != BinaryArithmeticOperator.Modulo;
+        bool IsIntegerOperands = leftOperand is IIntegerExpression && rightOperand is IIntegerExpression;
+        bool IsValidOperands = IsNotModulo || IsIntegerOperands;
+        Debug.Assert(IsValidOperands);
 
         LeftOperand = leftOperand;
         Operator = @operator;

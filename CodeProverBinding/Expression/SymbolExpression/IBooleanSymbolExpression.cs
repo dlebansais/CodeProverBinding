@@ -3,6 +3,6 @@
 /// <summary>
 /// Represents a boolean symbol expression.
 /// </summary>
-public interface IBooleanSymbolExpression : ISymbolExpression<IBooleanSort>, IBooleanExpression
+public interface IBooleanSymbolExpression : ISymbolExpression<IBooleanSort>, ISymbolExpression, IBooleanExpression
 {
 }

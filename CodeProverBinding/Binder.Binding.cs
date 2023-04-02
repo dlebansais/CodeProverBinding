@@ -6,7 +6,7 @@ using System.Diagnostics;
 /// <summary>
 /// Provides bindings for code provers.
 /// </summary>
-public partial class Binder
+public partial class Binder : IDisposable
 {
     /// <summary>
     /// Performs an action for the provided prover.

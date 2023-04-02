@@ -32,7 +32,8 @@ public class TestBoolean
         using IBooleanSymbolExpression TestObject = new BooleanSymbolExpression(Binder, TestSymbol);
 
         Assert.That(TestObject.Binder, Is.EqualTo(Binder));
-        Assert.That(TestObject.Symbol, Is.EqualTo(TestSymbol));
+        Assert.That(((ISymbolExpression)TestObject).Symbol, Is.EqualTo(TestSymbol));
+        Assert.That(((ISymbolExpression<IBooleanSort>)TestObject).Symbol, Is.EqualTo(TestSymbol));
     }
 
     [Test]

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 /// <summary>
 /// Provides bindings for code provers.
 /// </summary>
-public partial class Binder
+public partial class Binder : IDisposable
 {
     /// <summary>
     /// Gets the constant representing the boolean false.
