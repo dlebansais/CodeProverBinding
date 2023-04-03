@@ -2,6 +2,8 @@
 
 Provides bindings for code provers.
 
+[![Build status](https://ci.appveyor.com/api/projects/status/7s3b5d6ykc1rjjgr?svg=true)](https://ci.appveyor.com/project/dlebansais/codeproverbinding) [![codecov](https://codecov.io/gh/dlebansais/CodeProverBinding/branch/master/graph/badge.svg?token=ddNpDdIwc3)](https://codecov.io/gh/dlebansais/CodeProverBinding)
+
 ## Purpose
 
 This library is intended for programs that want to prove correctness of C# source code (although it can be used for other imperative languages).
