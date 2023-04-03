@@ -24,6 +24,7 @@ public class TestXxxArray
 
         Assert.That(TestSymbol.Name, Is.EqualTo(TestName));
         Assert.True(TestSymbol.Sort is IntegerSort);
+        Assert.True(((ISymbol)TestSymbol).Sort is IntegerSort);
         Assert.That(TestSymbol.Sort, Is.EqualTo(CodeProverBinding.Sort.Integer));
         Assert.That(TestSymbol.ToString(), Is.EqualTo(TestName));
 
