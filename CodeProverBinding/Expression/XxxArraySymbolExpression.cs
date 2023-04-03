@@ -16,6 +16,4 @@ public class XxxArraySymbolExpression : SymbolExpression<IIntegerSort>, IXxxArra
     {
         Binder.Binding(Prover.Z3, (ProverContextZ3 context) => { ExpressionZ3 = (IExprCapsule)context.Context.MkArrayConst(((ISymbol)symbol).Name, Sort.Integer.GetSortZ3(context), elementSort.GetSortZ3(context)).Encapsulate(); });
     }
-
-    internal IXxxArrayExprCapsule IntegerExpressionZ3 => (IXxxArrayExprCapsule)ExpressionZ3;
 }

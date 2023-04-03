@@ -15,6 +15,4 @@ public class XxxArrayConstantExpression : ConstantExpression<int>, IXxxArrayCons
     {
         Binder.Binding(Prover.Z3, (ProverContextZ3 context) => { ExpressionZ3 = (IExprCapsule)context.Context.MkConstArray(Sort.Integer.GetSortZ3(context), ((Expression)value).ExpressionZ3.Item).Encapsulate(); });
     }
-
-    internal IBoolExprCapsule BooleanExpressionZ3 => (IBoolExprCapsule)ExpressionZ3;
 }

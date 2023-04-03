@@ -60,4 +60,11 @@ public partial class BinderTest
         Assert.That(Z3Binder.Provers.Count, Is.EqualTo(1));
         Assert.That(Z3Binder.Provers[0], Is.EqualTo(Prover.Z3));
     }
+
+    [Test]
+    public void BindingInvalidProver()
+    {
+        Binder Z3Binder = new Binder(new List<Prover>() { Prover.Default, Prover.Z3 });
+        Z3Binder.Binding((Prover)(-1), (ProverContextZ3 context) => { });
+    }
 }
