@@ -55,6 +55,7 @@ public class TestFloatingPoint
         FloatingPointSymbol TestObject = new(Binder, TestName);
         FloatingPointSymbol TestAlias = (FloatingPointSymbol)TestObject.NewAlias();
 
-        Assert.That(TestAlias.ToString(), Is.EqualTo(Binder.AliasNaming.GetAliasName(TestObject)));
+        Assert.That(TestAlias.Index, Is.EqualTo(TestObject.Index + 1));
+        Assert.That(TestAlias.ToString(), Is.EqualTo(Binder.AliasNaming.GetAliasName(TestAlias)));
     }
 }

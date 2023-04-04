@@ -1,4 +1,4 @@
-﻿namespace ConstantExpression;
+﻿namespace Miscellaneous;
 
 using CodeProverBinding;
 using Microsoft.Z3;
@@ -37,5 +37,17 @@ public class TestXxxArray
 
         Binder.GetXxxArrayConstantExpression(Binder.Zero);
         Binder.CreateXxxArraySymbolExpression(TestName, CodeProverBinding.Sort.Integer);
+    }
+
+    [Test]
+    public void Alias()
+    {
+        Binder Binder = Tools.CreateBinder();
+        string TestName = "x";
+        XxxArraySymbol TestObject = new(Binder, TestName);
+        XxxArraySymbol TestAlias = (XxxArraySymbol)TestObject.NewAlias();
+
+        Assert.That(TestAlias.Index, Is.EqualTo(TestObject.Index + 1));
+        Assert.That(TestAlias.ToString(), Is.EqualTo(Binder.AliasNaming.GetAliasName(TestAlias)));
     }
 }

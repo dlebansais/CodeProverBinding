@@ -11,8 +11,8 @@ internal class AliasNaming : IAliasNaming
         int Index = ((SymbolBase)symbol).Index;
 
         if (Index == 0)
-            return symbol.ToString();
+            return symbol.Name;
         else
-            return $"{symbol}_{Index}";
+            return $"{symbol.Name}_{Index}";
     }
 }

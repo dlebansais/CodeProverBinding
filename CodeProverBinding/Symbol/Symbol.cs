@@ -45,6 +45,6 @@ public abstract class Symbol<TSort> : SymbolBase, ISymbol<TSort>
     /// <inheritdoc/>
     public override string ToString()
     {
-        return Name;
+        return Binder.AliasNaming.GetAliasName((ISymbol)this);
     }
 }
