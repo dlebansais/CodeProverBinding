@@ -93,7 +93,7 @@ public partial class BinderTest
 
         TestBinder.SaveProverState(CorrectnessCheckType.Satisfiable);
 
-        BooleanSymbolExpression X = new BooleanSymbolExpression(TestBinder, new BooleanSymbol("x"));
+        BooleanSymbolExpression X = new BooleanSymbolExpression(TestBinder, new BooleanSymbol(TestBinder, "x"));
         X.Assert();
 
         TestBinder.CheckCorrectness();

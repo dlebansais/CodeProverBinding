@@ -12,7 +12,7 @@ public class TestFloatingPoint
     {
         using Binder Binder = Tools.CreateBinder();
         string TestName = "x";
-        FloatingPointSymbol TestSymbol = new(TestName);
+        FloatingPointSymbol TestSymbol = new(Binder, TestName);
         using FloatingPointSymbolExpression TestObject = new(Binder, TestSymbol);
 
         Assert.That(TestObject.Binder, Is.EqualTo(Binder));
@@ -28,7 +28,7 @@ public class TestFloatingPoint
     {
         using Binder Binder = Tools.CreateBinder();
         string TestName = "x";
-        FloatingPointSymbol TestSymbol = new(TestName);
+        FloatingPointSymbol TestSymbol = new(Binder, TestName);
         using IFloatingPointSymbolExpression TestObject = new FloatingPointSymbolExpression(Binder, TestSymbol);
 
         Assert.That(TestObject.Binder, Is.EqualTo(Binder));
@@ -39,7 +39,7 @@ public class TestFloatingPoint
     {
         using Binder Binder = Tools.CreateBinder();
         string TestName = "x";
-        FloatingPointSymbol TestSymbol = new(TestName);
+        FloatingPointSymbol TestSymbol = new(Binder, TestName);
         using IArithmeticSymbolExpression<IFloatingPointSort> TestObject = new FloatingPointSymbolExpression(Binder, TestSymbol);
 
         Assert.That(TestObject.Binder, Is.EqualTo(Binder));
@@ -51,7 +51,7 @@ public class TestFloatingPoint
     {
         using Binder Binder = Tools.CreateBinder();
         string TestName = "x";
-        FloatingPointSymbol TestSymbol = new(TestName);
+        FloatingPointSymbol TestSymbol = new(Binder, TestName);
         using IArithmeticSymbolExpression TestObject = new FloatingPointSymbolExpression(Binder, TestSymbol);
 
         Assert.That(TestObject.Binder, Is.EqualTo(Binder));
@@ -63,7 +63,7 @@ public class TestFloatingPoint
     {
         using Binder Binder = Tools.CreateBinder();
         string TestName = "x";
-        FloatingPointSymbol TestSymbol = new(TestName);
+        FloatingPointSymbol TestSymbol = new(Binder, TestName);
         using ISymbolExpression<IFloatingPointSort> TestObject = new FloatingPointSymbolExpression(Binder, TestSymbol);
 
         Assert.That(TestObject.Binder, Is.EqualTo(Binder));
@@ -75,7 +75,7 @@ public class TestFloatingPoint
     {
         using Binder Binder = Tools.CreateBinder();
         string TestName = "x";
-        FloatingPointSymbol TestSymbol = new(TestName);
+        FloatingPointSymbol TestSymbol = new(Binder, TestName);
         using ISymbolExpression TestObject = new FloatingPointSymbolExpression(Binder, TestSymbol);
 
         Assert.That(TestObject.Symbol, Is.EqualTo(TestSymbol));
@@ -86,7 +86,7 @@ public class TestFloatingPoint
     {
         using Binder Binder = Tools.CreateBinder();
         string TestName = "x";
-        FloatingPointSymbol TestSymbol = new(TestName);
+        FloatingPointSymbol TestSymbol = new(Binder, TestName);
         using IArithmeticExpression TestObject = new FloatingPointSymbolExpression(Binder, TestSymbol);
 
         Assert.That(TestObject.Binder, Is.EqualTo(Binder));
@@ -97,7 +97,7 @@ public class TestFloatingPoint
     {
         using Binder Binder = Tools.CreateBinder();
         string TestName = "x";
-        FloatingPointSymbol TestSymbol = new(TestName);
+        FloatingPointSymbol TestSymbol = new(Binder, TestName);
         using IExpression TestObject = new FloatingPointSymbolExpression(Binder, TestSymbol);
 
         Assert.That(TestObject.Binder, Is.EqualTo(Binder));
@@ -108,7 +108,7 @@ public class TestFloatingPoint
     {
         using Binder Binder = Tools.CreateBinder();
         string TestName = "x";
-        FloatingPointSymbol TestSymbol = new(TestName);
+        FloatingPointSymbol TestSymbol = new(Binder, TestName);
         using FloatingPointSymbolExpression TestObject = new(Binder, TestSymbol);
 
         Assert.Throws<CodeProverException>(TestObject.Assert);

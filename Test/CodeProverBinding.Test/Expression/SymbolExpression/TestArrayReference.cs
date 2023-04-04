@@ -12,7 +12,7 @@ public class TestArrayReference
     {
         using Binder Binder = Tools.CreateBinder();
         string TestName = "x";
-        ReferenceSymbol TestSymbol = new(TestName);
+        ReferenceSymbol TestSymbol = new(Binder, TestName);
         using ArrayReferenceSymbolExpression TestArray = new(Binder, TestSymbol);
 
         Assert.That(TestArray.Binder, Is.EqualTo(Binder));
@@ -28,7 +28,7 @@ public class TestArrayReference
     {
         using Binder Binder = Tools.CreateBinder();
         string TestName = "x";
-        ReferenceSymbol TestSymbol = new(TestName);
+        ReferenceSymbol TestSymbol = new(Binder, TestName);
         using IArrayReferenceSymbolExpression TestArray = new ArrayReferenceSymbolExpression(Binder, TestSymbol);
 
         Assert.That(TestArray.Binder, Is.EqualTo(Binder));
@@ -39,7 +39,7 @@ public class TestArrayReference
     {
         using Binder Binder = Tools.CreateBinder();
         string TestName = "x";
-        ReferenceSymbol TestSymbol = new(TestName);
+        ReferenceSymbol TestSymbol = new(Binder, TestName);
         using ISymbolExpression<IReferenceSort> TestArray = new ArrayReferenceSymbolExpression(Binder, TestSymbol);
 
         Assert.That(TestArray.Binder, Is.EqualTo(Binder));
@@ -51,7 +51,7 @@ public class TestArrayReference
     {
         using Binder Binder = Tools.CreateBinder();
         string TestName = "x";
-        ReferenceSymbol TestSymbol = new(TestName);
+        ReferenceSymbol TestSymbol = new(Binder, TestName);
         using ISymbolExpression TestArray = new ArrayReferenceSymbolExpression(Binder, TestSymbol);
 
         Assert.That(TestArray.Symbol, Is.EqualTo(TestSymbol));
@@ -62,7 +62,7 @@ public class TestArrayReference
     {
         using Binder Binder = Tools.CreateBinder();
         string TestName = "x";
-        ReferenceSymbol TestSymbol = new(TestName);
+        ReferenceSymbol TestSymbol = new(Binder, TestName);
         using IReferenceExpression TestArray = new ArrayReferenceSymbolExpression(Binder, TestSymbol);
 
         Assert.That(TestArray.Binder, Is.EqualTo(Binder));
@@ -73,7 +73,7 @@ public class TestArrayReference
     {
         using Binder Binder = Tools.CreateBinder();
         string TestName = "x";
-        ReferenceSymbol TestSymbol = new(TestName);
+        ReferenceSymbol TestSymbol = new(Binder, TestName);
         using IExpression TestArray = new ArrayReferenceSymbolExpression(Binder, TestSymbol);
 
         Assert.That(TestArray.Binder, Is.EqualTo(Binder));
@@ -84,7 +84,7 @@ public class TestArrayReference
     {
         using Binder Binder = Tools.CreateBinder();
         string TestName = "x";
-        ReferenceSymbol TestSymbol = new(TestName);
+        ReferenceSymbol TestSymbol = new(Binder, TestName);
         using ArrayReferenceSymbolExpression TestArray = new(Binder, TestSymbol);
 
         Assert.Throws<CodeProverException>(TestArray.Assert);

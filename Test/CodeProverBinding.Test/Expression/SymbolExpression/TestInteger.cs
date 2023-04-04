@@ -12,7 +12,7 @@ public class TestInteger
     {
         using Binder Binder = Tools.CreateBinder();
         string TestName = "x";
-        IntegerSymbol TestSymbol = new(TestName);
+        IntegerSymbol TestSymbol = new(Binder, TestName);
         using IntegerSymbolExpression TestObject = new(Binder, TestSymbol);
 
         Assert.That(TestObject.Binder, Is.EqualTo(Binder));
@@ -28,7 +28,7 @@ public class TestInteger
     {
         using Binder Binder = Tools.CreateBinder();
         string TestName = "x";
-        IntegerSymbol TestSymbol = new(TestName);
+        IntegerSymbol TestSymbol = new(Binder, TestName);
         using IIntegerSymbolExpression TestObject = new IntegerSymbolExpression(Binder, TestSymbol);
 
         Assert.That(TestObject.Binder, Is.EqualTo(Binder));
@@ -39,7 +39,7 @@ public class TestInteger
     {
         using Binder Binder = Tools.CreateBinder();
         string TestName = "x";
-        IntegerSymbol TestSymbol = new(TestName);
+        IntegerSymbol TestSymbol = new(Binder, TestName);
         using IArithmeticSymbolExpression<IIntegerSort> TestObject = new IntegerSymbolExpression(Binder, TestSymbol);
 
         Assert.That(TestObject.Binder, Is.EqualTo(Binder));
@@ -51,7 +51,7 @@ public class TestInteger
     {
         using Binder Binder = Tools.CreateBinder();
         string TestName = "x";
-        IntegerSymbol TestSymbol = new(TestName);
+        IntegerSymbol TestSymbol = new(Binder, TestName);
         using IArithmeticSymbolExpression TestObject = new IntegerSymbolExpression(Binder, TestSymbol);
 
         Assert.That(TestObject.Binder, Is.EqualTo(Binder));
@@ -63,7 +63,7 @@ public class TestInteger
     {
         using Binder Binder = Tools.CreateBinder();
         string TestName = "x";
-        IntegerSymbol TestSymbol = new(TestName);
+        IntegerSymbol TestSymbol = new(Binder, TestName);
         using ISymbolExpression<IIntegerSort> TestObject = new IntegerSymbolExpression(Binder, TestSymbol);
 
         Assert.That(TestObject.Binder, Is.EqualTo(Binder));
@@ -75,7 +75,7 @@ public class TestInteger
     {
         using Binder Binder = Tools.CreateBinder();
         string TestName = "x";
-        IntegerSymbol TestSymbol = new(TestName);
+        IntegerSymbol TestSymbol = new(Binder, TestName);
         using ISymbolExpression TestObject = new IntegerSymbolExpression(Binder, TestSymbol);
 
         Assert.That(TestObject.Symbol, Is.EqualTo(TestSymbol));
@@ -86,7 +86,7 @@ public class TestInteger
     {
         using Binder Binder = Tools.CreateBinder();
         string TestName = "x";
-        IntegerSymbol TestSymbol = new(TestName);
+        IntegerSymbol TestSymbol = new(Binder, TestName);
         using IIntegerExpression TestObject = new IntegerSymbolExpression(Binder, TestSymbol);
 
         Assert.That(TestObject.Binder, Is.EqualTo(Binder));
@@ -97,7 +97,7 @@ public class TestInteger
     {
         using Binder Binder = Tools.CreateBinder();
         string TestName = "x";
-        IntegerSymbol TestSymbol = new(TestName);
+        IntegerSymbol TestSymbol = new(Binder, TestName);
         using IExpression TestObject = new IntegerSymbolExpression(Binder, TestSymbol);
 
         Assert.That(TestObject.Binder, Is.EqualTo(Binder));
@@ -108,7 +108,7 @@ public class TestInteger
     {
         using Binder Binder = Tools.CreateBinder();
         string TestName = "x";
-        IntegerSymbol TestSymbol = new(TestName);
+        IntegerSymbol TestSymbol = new(Binder, TestName);
         using IntegerSymbolExpression TestObject = new(Binder, TestSymbol);
 
         Assert.Throws<CodeProverException>(TestObject.Assert);

@@ -12,7 +12,7 @@ public class TestObjectReference
     {
         using Binder Binder = Tools.CreateBinder();
         string TestName = "x";
-        ReferenceSymbol TestSymbol = new(TestName);
+        ReferenceSymbol TestSymbol = new(Binder, TestName);
         using ObjectReferenceSymbolExpression TestObject = new(Binder, TestSymbol);
 
         Assert.That(TestObject.Binder, Is.EqualTo(Binder));
@@ -28,7 +28,7 @@ public class TestObjectReference
     {
         using Binder Binder = Tools.CreateBinder();
         string TestName = "x";
-        ReferenceSymbol TestSymbol = new(TestName);
+        ReferenceSymbol TestSymbol = new(Binder, TestName);
         using IObjectReferenceSymbolExpression TestObject = new ObjectReferenceSymbolExpression(Binder, TestSymbol);
 
         Assert.That(TestObject.Binder, Is.EqualTo(Binder));
@@ -39,7 +39,7 @@ public class TestObjectReference
     {
         using Binder Binder = Tools.CreateBinder();
         string TestName = "x";
-        ReferenceSymbol TestSymbol = new(TestName);
+        ReferenceSymbol TestSymbol = new(Binder, TestName);
         using ISymbolExpression<IReferenceSort> TestObject = new ObjectReferenceSymbolExpression(Binder, TestSymbol);
 
         Assert.That(TestObject.Binder, Is.EqualTo(Binder));
@@ -51,7 +51,7 @@ public class TestObjectReference
     {
         using Binder Binder = Tools.CreateBinder();
         string TestName = "x";
-        ReferenceSymbol TestSymbol = new(TestName);
+        ReferenceSymbol TestSymbol = new(Binder, TestName);
         using ISymbolExpression TestObject = new ObjectReferenceSymbolExpression(Binder, TestSymbol);
 
         Assert.That(TestObject.Symbol, Is.EqualTo(TestSymbol));
@@ -62,7 +62,7 @@ public class TestObjectReference
     {
         using Binder Binder = Tools.CreateBinder();
         string TestName = "x";
-        ReferenceSymbol TestSymbol = new(TestName);
+        ReferenceSymbol TestSymbol = new(Binder, TestName);
         using IReferenceExpression TestObject = new ObjectReferenceSymbolExpression(Binder, TestSymbol);
 
         Assert.That(TestObject.Binder, Is.EqualTo(Binder));
@@ -73,7 +73,7 @@ public class TestObjectReference
     {
         using Binder Binder = Tools.CreateBinder();
         string TestName = "x";
-        ReferenceSymbol TestSymbol = new(TestName);
+        ReferenceSymbol TestSymbol = new(Binder, TestName);
         using IExpression TestObject = new ObjectReferenceSymbolExpression(Binder, TestSymbol);
 
         Assert.That(TestObject.Binder, Is.EqualTo(Binder));
@@ -84,7 +84,7 @@ public class TestObjectReference
     {
         using Binder Binder = Tools.CreateBinder();
         string TestName = "x";
-        ReferenceSymbol TestSymbol = new(TestName);
+        ReferenceSymbol TestSymbol = new(Binder, TestName);
         using ObjectReferenceSymbolExpression TestObject = new(Binder, TestSymbol);
 
         Assert.Throws<CodeProverException>(TestObject.Assert);

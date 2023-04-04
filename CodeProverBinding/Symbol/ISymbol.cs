@@ -3,10 +3,13 @@
 /// <summary>
 /// Provides information about a symbol.
 /// </summary>
-/// <typeparam name="TSort">The sort.</typeparam>
-public interface ISymbol<TSort>
-    where TSort : ISort
+public interface ISymbol
 {
+    /// <summary>
+    /// Gets the binder.
+    /// </summary>
+    Binder Binder { get; }
+
     /// <summary>
     /// Gets the symbol name.
     /// </summary>
@@ -15,5 +18,10 @@ public interface ISymbol<TSort>
     /// <summary>
     /// Gets the symbol sort.
     /// </summary>
-    TSort Sort { get; }
+    ISort Sort { get; }
+
+    /// <summary>
+    /// Creates a new symbol as an alias of the current symbol.
+    /// </summary>
+    ISymbol NewAlias();
 }

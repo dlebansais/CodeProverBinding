@@ -20,7 +20,7 @@ public class TestXxxArray
         Assert.True(TestObject.ToString() is not null);
 
         string TestName = "x";
-        XxxArraySymbol TestSymbol = new(TestName);
+        XxxArraySymbol TestSymbol = new(Binder, TestName);
 
         Assert.That(TestSymbol.Name, Is.EqualTo(TestName));
         Assert.True(TestSymbol.Sort is IntegerSort);

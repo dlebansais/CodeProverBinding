@@ -12,7 +12,7 @@ public class TestBoolean
     {
         using Binder Binder = Tools.CreateBinder();
         string TestName = "x";
-        BooleanSymbol TestSymbol = new(TestName);
+        BooleanSymbol TestSymbol = new(Binder, TestName);
         using BooleanSymbolExpression TestObject = new(Binder, TestSymbol);
 
         Assert.That(TestObject.Binder, Is.EqualTo(Binder));
@@ -28,7 +28,7 @@ public class TestBoolean
     {
         using Binder Binder = Tools.CreateBinder();
         string TestName = "x";
-        BooleanSymbol TestSymbol = new(TestName);
+        BooleanSymbol TestSymbol = new(Binder, TestName);
         using IBooleanSymbolExpression TestObject = new BooleanSymbolExpression(Binder, TestSymbol);
 
         Assert.That(TestObject.Binder, Is.EqualTo(Binder));
@@ -41,7 +41,7 @@ public class TestBoolean
     {
         using Binder Binder = Tools.CreateBinder();
         string TestName = "x";
-        BooleanSymbol TestSymbol = new(TestName);
+        BooleanSymbol TestSymbol = new(Binder, TestName);
         using ISymbolExpression<IBooleanSort> TestObject = new BooleanSymbolExpression(Binder, TestSymbol);
 
         Assert.That(TestObject.Binder, Is.EqualTo(Binder));
@@ -53,7 +53,7 @@ public class TestBoolean
     {
         using Binder Binder = Tools.CreateBinder();
         string TestName = "x";
-        BooleanSymbol TestSymbol = new(TestName);
+        BooleanSymbol TestSymbol = new(Binder, TestName);
         using ISymbolExpression TestObject = new BooleanSymbolExpression(Binder, TestSymbol);
 
         Assert.That(TestObject.Symbol, Is.EqualTo(TestSymbol));
@@ -64,7 +64,7 @@ public class TestBoolean
     {
         using Binder Binder = Tools.CreateBinder();
         string TestName = "x";
-        BooleanSymbol TestSymbol = new(TestName);
+        BooleanSymbol TestSymbol = new(Binder, TestName);
         using IBooleanExpression TestObject = new BooleanSymbolExpression(Binder, TestSymbol);
 
         Assert.That(TestObject.Binder, Is.EqualTo(Binder));
@@ -75,7 +75,7 @@ public class TestBoolean
     {
         using Binder Binder = Tools.CreateBinder();
         string TestName = "x";
-        BooleanSymbol TestSymbol = new(TestName);
+        BooleanSymbol TestSymbol = new(Binder, TestName);
         using IExpression TestObject = new BooleanSymbolExpression(Binder, TestSymbol);
 
         Assert.That(TestObject.Binder, Is.EqualTo(Binder));
@@ -86,7 +86,7 @@ public class TestBoolean
     {
         using Binder Binder = Tools.CreateBinder();
         string TestName = "x";
-        BooleanSymbol TestSymbol = new(TestName);
+        BooleanSymbol TestSymbol = new(Binder, TestName);
         using BooleanSymbolExpression TestObject = new(Binder, TestSymbol);
 
         TestObject.Assert();

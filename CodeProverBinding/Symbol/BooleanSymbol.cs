@@ -3,23 +3,23 @@
 /// <summary>
 /// Represents a boolean symbol.
 /// </summary>
-public class XxxArraySymbol : Symbol<IIntegerSort>, IXxxArraySymbol
+public class BooleanSymbol : Symbol<IBooleanSort>, IBooleanSymbol
 {
     /// <summary>
-    /// Initializes a new instance of the <see cref="XxxArraySymbol"/> class.
+    /// Initializes a new instance of the <see cref="BooleanSymbol"/> class.
     /// </summary>
     /// <param name="binder">The binder.</param>
     /// <param name="name">The symbol name.</param>
-    public XxxArraySymbol(Binder binder, string name)
+    public BooleanSymbol(Binder binder, string name)
         : base(binder, name)
     {
     }
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="XxxArraySymbol"/> class.
+    /// Initializes a new instance of the <see cref="BooleanSymbol"/> class.
     /// </summary>
     /// <param name="other">The source symbol.</param>
-    public XxxArraySymbol(XxxArraySymbol other)
+    public BooleanSymbol(BooleanSymbol other)
         : base(other)
     {
     }
@@ -29,10 +29,10 @@ public class XxxArraySymbol : Symbol<IIntegerSort>, IXxxArraySymbol
     /// </summary>
     public override ISymbol NewAlias()
     {
-        return new XxxArraySymbol(this);
+        return new BooleanSymbol(this);
     }
 
     /// <inheritdoc/>
-    public override IIntegerSort Sort { get => CodeProverBinding.Sort.Integer; }
+    public override IBooleanSort Sort { get => CodeProverBinding.Sort.Boolean; }
     ISort ISymbol.Sort { get => Sort; }
 }

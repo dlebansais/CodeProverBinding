@@ -3,8 +3,15 @@
 /// <summary>
 /// Provides information about a symbol.
 /// </summary>
-public interface ISymbol
+/// <typeparam name="TSort">The sort.</typeparam>
+public interface ISymbol<TSort>
+    where TSort : ISort
 {
+    /// <summary>
+    /// Gets the binder.
+    /// </summary>
+    Binder Binder { get; }
+
     /// <summary>
     /// Gets the symbol name.
     /// </summary>
@@ -13,5 +20,5 @@ public interface ISymbol
     /// <summary>
     /// Gets the symbol sort.
     /// </summary>
-    ISort Sort { get; }
+    TSort Sort { get; }
 }

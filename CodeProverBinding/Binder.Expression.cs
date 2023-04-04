@@ -132,7 +132,7 @@ public partial class Binder : IDisposable
     /// <param name="name">The symbol name.</param>
     public IBooleanSymbol CreateBooleanSymbol(string name)
     {
-        return new BooleanSymbol(name);
+        return new BooleanSymbol(this, name);
     }
 
     /// <summary>
@@ -141,7 +141,7 @@ public partial class Binder : IDisposable
     /// <param name="name">The symbol name.</param>
     public IIntegerSymbol CreateIntegerSymbol(string name)
     {
-        return new IntegerSymbol(name);
+        return new IntegerSymbol(this, name);
     }
 
     /// <summary>
@@ -150,7 +150,7 @@ public partial class Binder : IDisposable
     /// <param name="name">The symbol name.</param>
     public IFloatingPointSymbol CreateFloatingPointSymbol(string name)
     {
-        return new FloatingPointSymbol(name);
+        return new FloatingPointSymbol(this, name);
     }
 
     /// <summary>
@@ -159,7 +159,7 @@ public partial class Binder : IDisposable
     /// <param name="name">The symbol name.</param>
     public IReferenceSymbol CreateReferenceSymbol(string name)
     {
-        return new ReferenceSymbol(name);
+        return new ReferenceSymbol(this, name);
     }
 
     /// <summary>
@@ -168,7 +168,7 @@ public partial class Binder : IDisposable
     /// <param name="name">The symbol name.</param>
     public IBooleanSymbolExpression CreateBooleanSymbolExpression(string name)
     {
-        return new BooleanSymbolExpression(this, new BooleanSymbol(name));
+        return new BooleanSymbolExpression(this, new BooleanSymbol(this, name));
     }
 
     /// <summary>
@@ -177,7 +177,7 @@ public partial class Binder : IDisposable
     /// <param name="name">The symbol name.</param>
     public IIntegerSymbolExpression CreateIntegerSymbolExpression(string name)
     {
-        return new IntegerSymbolExpression(this, new IntegerSymbol(name));
+        return new IntegerSymbolExpression(this, new IntegerSymbol(this, name));
     }
 
     /// <summary>
@@ -186,7 +186,7 @@ public partial class Binder : IDisposable
     /// <param name="name">The symbol name.</param>
     public IFloatingPointSymbolExpression CreateFloatingPointSymbolExpression(string name)
     {
-        return new FloatingPointSymbolExpression(this, new FloatingPointSymbol(name));
+        return new FloatingPointSymbolExpression(this, new FloatingPointSymbol(this, name));
     }
 
     /// <summary>
@@ -195,7 +195,7 @@ public partial class Binder : IDisposable
     /// <param name="name">The symbol name.</param>
     public IReferenceSymbolExpression CreateReferenceSymbolExpression(string name)
     {
-        return new ReferenceSymbolExpression(this, new ReferenceSymbol(name));
+        return new ReferenceSymbolExpression(this, new ReferenceSymbol(this, name));
     }
 
     /// <summary>
@@ -204,7 +204,7 @@ public partial class Binder : IDisposable
     /// <param name="name">The symbol name.</param>
     public IObjectReferenceSymbolExpression CreateObjectReferenceSymbolExpression(string name)
     {
-        return new ObjectReferenceSymbolExpression(this, new ReferenceSymbol(name));
+        return new ObjectReferenceSymbolExpression(this, new ReferenceSymbol(this, name));
     }
 
     /// <summary>
@@ -213,7 +213,7 @@ public partial class Binder : IDisposable
     /// <param name="name">The symbol name.</param>
     public IArrayReferenceSymbolExpression CreateArrayReferenceSymbolExpression(string name)
     {
-        return new ArrayReferenceSymbolExpression(this, new ReferenceSymbol(name));
+        return new ArrayReferenceSymbolExpression(this, new ReferenceSymbol(this, name));
     }
 
     /// <summary>
@@ -223,7 +223,7 @@ public partial class Binder : IDisposable
     /// <param name="elementSort">The element sort.</param>
     public IXxxArraySymbolExpression CreateXxxArraySymbolExpression(string name, ISort elementSort)
     {
-        return new XxxArraySymbolExpression(this, new XxxArraySymbol(name), elementSort);
+        return new XxxArraySymbolExpression(this, new XxxArraySymbol(this, name), elementSort);
     }
 
     /// <summary>

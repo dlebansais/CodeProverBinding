@@ -1,25 +1,25 @@
 ﻿namespace CodeProverBinding;
 
 /// <summary>
-/// Represents a boolean symbol.
+/// Represents a floating point symbol.
 /// </summary>
-public class XxxArraySymbol : Symbol<IIntegerSort>, IXxxArraySymbol
+public class FloatingPointSymbol : Symbol<IFloatingPointSort>, IFloatingPointSymbol
 {
     /// <summary>
-    /// Initializes a new instance of the <see cref="XxxArraySymbol"/> class.
+    /// Initializes a new instance of the <see cref="FloatingPointSymbol"/> class.
     /// </summary>
     /// <param name="binder">The binder.</param>
     /// <param name="name">The symbol name.</param>
-    public XxxArraySymbol(Binder binder, string name)
+    public FloatingPointSymbol(Binder binder, string name)
         : base(binder, name)
     {
     }
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="XxxArraySymbol"/> class.
+    /// Initializes a new instance of the <see cref="FloatingPointSymbol"/> class.
     /// </summary>
     /// <param name="other">The source symbol.</param>
-    public XxxArraySymbol(XxxArraySymbol other)
+    public FloatingPointSymbol(FloatingPointSymbol other)
         : base(other)
     {
     }
@@ -29,10 +29,10 @@ public class XxxArraySymbol : Symbol<IIntegerSort>, IXxxArraySymbol
     /// </summary>
     public override ISymbol NewAlias()
     {
-        return new XxxArraySymbol(this);
+        return new FloatingPointSymbol(this);
     }
 
     /// <inheritdoc/>
-    public override IIntegerSort Sort { get => CodeProverBinding.Sort.Integer; }
+    public override IFloatingPointSort Sort { get => CodeProverBinding.Sort.FloatingPoint; }
     ISort ISymbol.Sort { get => Sort; }
 }

@@ -54,4 +54,9 @@ public partial class Binder : IDisposable
     /// Gets the provers.
     /// </summary>
     public List<Prover> Provers { get; } = new List<Prover>();
+
+    /// <summary>
+    /// Gets or sets the alias naming scheme.
+    /// </summary>
+    public IAliasNaming AliasNaming { get; set; } = new AliasNaming();
 }

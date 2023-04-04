@@ -1,25 +1,25 @@
 ﻿namespace CodeProverBinding;
 
 /// <summary>
-/// Represents a boolean symbol.
+/// Represents an integer symbol.
 /// </summary>
-public class XxxArraySymbol : Symbol<IIntegerSort>, IXxxArraySymbol
+public class IntegerSymbol : Symbol<IIntegerSort>, IIntegerSymbol
 {
     /// <summary>
-    /// Initializes a new instance of the <see cref="XxxArraySymbol"/> class.
+    /// Initializes a new instance of the <see cref="IntegerSymbol"/> class.
     /// </summary>
     /// <param name="binder">The binder.</param>
     /// <param name="name">The symbol name.</param>
-    public XxxArraySymbol(Binder binder, string name)
+    public IntegerSymbol(Binder binder, string name)
         : base(binder, name)
     {
     }
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="XxxArraySymbol"/> class.
+    /// Initializes a new instance of the <see cref="IntegerSymbol"/> class.
     /// </summary>
     /// <param name="other">The source symbol.</param>
-    public XxxArraySymbol(XxxArraySymbol other)
+    public IntegerSymbol(IntegerSymbol other)
         : base(other)
     {
     }
@@ -29,7 +29,7 @@ public class XxxArraySymbol : Symbol<IIntegerSort>, IXxxArraySymbol
     /// </summary>
     public override ISymbol NewAlias()
     {
-        return new XxxArraySymbol(this);
+        return new IntegerSymbol(this);
     }
 
     /// <inheritdoc/>
