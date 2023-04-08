@@ -16,6 +16,11 @@ public interface ISymbol
     string Name { get; }
 
     /// <summary>
+    /// Gets a value indicating whether the symbol is an alias to another symbol.
+    /// </summary>
+    bool IsAlias { get; }
+
+    /// <summary>
     /// Gets the symbol sort.
     /// </summary>
     ISort Sort { get; }

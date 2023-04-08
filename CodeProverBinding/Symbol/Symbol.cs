@@ -31,6 +31,8 @@ public abstract class Symbol<TSort> : SymbolBase, ISymbol<TSort>
         Binder = other.Binder;
         Name = other.Name;
         Index = other.Index + 1;
+
+        Binder.AliasTable.SetAlias(other, this);
     }
 
     /// <inheritdoc/>
