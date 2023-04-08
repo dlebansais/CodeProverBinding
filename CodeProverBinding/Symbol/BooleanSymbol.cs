@@ -34,5 +34,4 @@ public class BooleanSymbol : Symbol<IBooleanSort>, IBooleanSymbol
 
     /// <inheritdoc/>
     public override IBooleanSort Sort { get => CodeProverBinding.Sort.Boolean; }
-    ISort ISymbol.Sort { get => Sort; }
 }

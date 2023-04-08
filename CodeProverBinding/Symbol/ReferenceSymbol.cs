@@ -34,5 +34,4 @@ public class ReferenceSymbol : Symbol<IReferenceSort>, IReferenceSymbol
 
     /// <inheritdoc/>
     public override IReferenceSort Sort { get => CodeProverBinding.Sort.Reference; }
-    ISort ISymbol.Sort { get => Sort; }
 }

@@ -34,5 +34,4 @@ public class IntegerSymbol : Symbol<IIntegerSort>, IIntegerSymbol
 
     /// <inheritdoc/>
     public override IIntegerSort Sort { get => CodeProverBinding.Sort.Integer; }
-    ISort ISymbol.Sort { get => Sort; }
 }

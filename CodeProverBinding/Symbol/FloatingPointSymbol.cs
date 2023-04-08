@@ -34,5 +34,4 @@ public class FloatingPointSymbol : Symbol<IFloatingPointSort>, IFloatingPointSym
 
     /// <inheritdoc/>
     public override IFloatingPointSort Sort { get => CodeProverBinding.Sort.FloatingPoint; }
-    ISort ISymbol.Sort { get => Sort; }
 }

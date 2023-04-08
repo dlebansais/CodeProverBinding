@@ -20,12 +20,9 @@ public partial class Binder : IDisposable
         if (!Provers.Contains(prover))
             return;
 
-        switch (prover)
-        {
-            case Prover.Z3:
-                BindingZ3(action);
-                break;
-        }
+        Debug.Assert(prover == Prover.Z3);
+
+        BindingZ3(action);
     }
 
     private void BindingZ3<TProverContext>(Action<TProverContext> action)
@@ -36,8 +33,7 @@ public partial class Binder : IDisposable
 
         Debug.Assert(ContextZ3 is TProverContext);
 
-        if (ContextZ3 is TProverContext Context)
-            action(Context);
+        action((TProverContext)(IProverContext)ContextZ3);
     }
 
     private ProverContextZ3? ContextZ3 = null;
