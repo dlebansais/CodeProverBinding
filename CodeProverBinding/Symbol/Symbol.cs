@@ -6,7 +6,7 @@ using System.Diagnostics;
 /// Represents a symbol.
 /// </summary>
 /// <typeparam name="TSort">The sort.</typeparam>
-public abstract class Symbol<TSort> : SymbolBase, ISymbol<TSort>
+public abstract class Symbol<TSort> : SymbolBase, ISymbol<TSort>, ISymbol
     where TSort : ISort
 {
     /// <summary>
@@ -43,6 +43,7 @@ public abstract class Symbol<TSort> : SymbolBase, ISymbol<TSort>
 
     /// <inheritdoc/>
     public abstract TSort Sort { get; }
+    ISort ISymbol.Sort => Sort;
 
     /// <inheritdoc/>
     public override string ToString()

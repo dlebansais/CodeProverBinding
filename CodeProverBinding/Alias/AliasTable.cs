@@ -13,8 +13,8 @@ internal class AliasTable
     /// </summary>
     public AliasTable()
     {
-        SymbolToAliasTable = new Dictionary<SymbolBase, SymbolBase>();
-        AliasToSymbolTable = new Dictionary<SymbolBase, SymbolBase>();
+        SymbolToAliasTable = new Dictionary<ISymbol, ISymbol>();
+        AliasToSymbolTable = new Dictionary<ISymbol, ISymbol>();
     }
 
     /// <summary>
@@ -27,14 +27,14 @@ internal class AliasTable
     /// </summary>
     /// <param name="symbolOrAlias">The symbol or alias.</param>
     /// <param name="alias">The alias.</param>
-    public void SetAlias(SymbolBase symbolOrAlias, SymbolBase alias)
+    public void SetAlias(ISymbol symbolOrAlias, ISymbol alias)
     {
         Debug.Assert(alias.IsAlias);
-        Debug.Assert(alias.Index == symbolOrAlias.Index + 1);
+        Debug.Assert(((SymbolBase)alias).Index == ((SymbolBase)symbolOrAlias).Index + 1);
         Debug.Assert(!AliasToSymbolTable.ContainsKey(alias));
         Debug.Assert(!SymbolToAliasTable.ContainsKey(alias));
 
-        SymbolBase RootSymbol;
+        ISymbol RootSymbol;
 
         if (symbolOrAlias.IsAlias)
         {
@@ -58,7 +58,7 @@ internal class AliasTable
     /// Returns the current alias of a symbol.
     /// </summary>
     /// <param name="symbol">The symbol.</param>
-    internal SymbolBase GetAlias(SymbolBase symbol)
+    internal ISymbol GetAlias(ISymbol symbol)
     {
         Debug.Assert(!symbol.IsAlias);
         Debug.Assert(SymbolToAliasTable.ContainsKey(symbol));
@@ -66,6 +66,6 @@ internal class AliasTable
         return SymbolToAliasTable[symbol];
     }
 
-    private Dictionary<SymbolBase, SymbolBase> SymbolToAliasTable;
-    private Dictionary<SymbolBase, SymbolBase> AliasToSymbolTable;
+    private Dictionary<ISymbol, ISymbol> SymbolToAliasTable;
+    private Dictionary<ISymbol, ISymbol> AliasToSymbolTable;
 }

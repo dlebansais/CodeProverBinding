@@ -4,7 +4,7 @@ using CodeProverBinding;
 using NUnit.Framework;
 
 [TestFixture]
-public partial class BinderTest
+public class BinderTestCorrectness
 {
     [Test]
     public void SaveRestore()

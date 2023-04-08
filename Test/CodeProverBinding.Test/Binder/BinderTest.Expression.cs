@@ -5,7 +5,7 @@ using CodeProverBinding;
 using NUnit.Framework;
 
 [TestFixture]
-public partial class BinderTest
+public class BinderTestExpression
 {
     [Test]
     public void Predefined()

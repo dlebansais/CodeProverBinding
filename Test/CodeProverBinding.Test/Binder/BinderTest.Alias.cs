@@ -1,14 +1,13 @@
 ﻿namespace Binder;
 
-using System.Collections.Generic;
 using CodeProverBinding;
 using NUnit.Framework;
 
 [TestFixture]
-public partial class BinderTest
+public class BinderTestAlias
 {
     [Test]
-    public void BasicAliasTest()
+    public void BasicTest()
     {
         Binder TestBinder = new Binder(Prover.Default);
 
@@ -23,12 +22,12 @@ public partial class BinderTest
 
         Assert.True(TestAlias0.IsAlias);
         Assert.False(TestBinder.AliasTable.IsEmpty);
-        Assert.That(TestBinder.AliasTable.GetAlias((SymbolBase)TestSymbol), Is.EqualTo(TestAlias0));
+        Assert.That(TestBinder.AliasTable.GetAlias(TestSymbol), Is.EqualTo(TestAlias0));
 
         ISymbol TestAlias1 = TestAlias0.NewAlias();
 
         Assert.True(TestAlias1.IsAlias);
         Assert.False(TestBinder.AliasTable.IsEmpty);
-        Assert.That(TestBinder.AliasTable.GetAlias((SymbolBase)TestSymbol), Is.EqualTo(TestAlias1));
+        Assert.That(TestBinder.AliasTable.GetAlias(TestSymbol), Is.EqualTo(TestAlias1));
     }
 }
