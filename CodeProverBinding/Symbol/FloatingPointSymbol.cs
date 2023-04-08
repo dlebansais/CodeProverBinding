@@ -3,7 +3,7 @@
 /// <summary>
 /// Represents a floating point symbol.
 /// </summary>
-public class FloatingPointSymbol : Symbol<IFloatingPointSort>, IFloatingPointSymbol
+public record FloatingPointSymbol : Symbol<IFloatingPointSort>, IFloatingPointSymbol
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="FloatingPointSymbol"/> class.
@@ -34,4 +34,10 @@ public class FloatingPointSymbol : Symbol<IFloatingPointSort>, IFloatingPointSym
 
     /// <inheritdoc/>
     public override IFloatingPointSort Sort { get => CodeProverBinding.Sort.FloatingPoint; }
+
+    /// <inheritdoc/>
+    public override string ToString()
+    {
+        return Binder.AliasNaming.GetAliasName((ISymbol)this);
+    }
 }

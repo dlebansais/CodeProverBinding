@@ -3,7 +3,7 @@
 /// <summary>
 /// Represents the base class of a symbol.
 /// </summary>
-public abstract class SymbolBase
+public abstract record SymbolBase
 {
     /// <summary>
     /// Gets the alias index.

@@ -3,7 +3,7 @@
 /// <summary>
 /// Represents a boolean symbol.
 /// </summary>
-public class BooleanSymbol : Symbol<IBooleanSort>, IBooleanSymbol
+public record BooleanSymbol : Symbol<IBooleanSort>, IBooleanSymbol
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="BooleanSymbol"/> class.
@@ -34,4 +34,10 @@ public class BooleanSymbol : Symbol<IBooleanSort>, IBooleanSymbol
 
     /// <inheritdoc/>
     public override IBooleanSort Sort { get => CodeProverBinding.Sort.Boolean; }
+
+    /// <inheritdoc/>
+    public override string ToString()
+    {
+        return Binder.AliasNaming.GetAliasName((ISymbol)this);
+    }
 }

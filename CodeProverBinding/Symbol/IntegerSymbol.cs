@@ -3,7 +3,7 @@
 /// <summary>
 /// Represents an integer symbol.
 /// </summary>
-public class IntegerSymbol : Symbol<IIntegerSort>, IIntegerSymbol
+public record IntegerSymbol : Symbol<IIntegerSort>, IIntegerSymbol
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="IntegerSymbol"/> class.
@@ -34,4 +34,10 @@ public class IntegerSymbol : Symbol<IIntegerSort>, IIntegerSymbol
 
     /// <inheritdoc/>
     public override IIntegerSort Sort { get => CodeProverBinding.Sort.Integer; }
+
+    /// <inheritdoc/>
+    public override string ToString()
+    {
+        return Binder.AliasNaming.GetAliasName((ISymbol)this);
+    }
 }

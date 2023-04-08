@@ -6,7 +6,7 @@ using System.Diagnostics;
 /// Represents a symbol.
 /// </summary>
 /// <typeparam name="TSort">The sort.</typeparam>
-public abstract class Symbol<TSort> : SymbolBase, ISymbol<TSort>, ISymbol
+public abstract record Symbol<TSort> : SymbolBase, ISymbol<TSort>, ISymbol
     where TSort : ISort
 {
     /// <summary>
@@ -27,6 +27,7 @@ public abstract class Symbol<TSort> : SymbolBase, ISymbol<TSort>, ISymbol
     /// </summary>
     /// <param name="other">The source symbol.</param>
     public Symbol(Symbol<TSort> other)
+        : base(other)
     {
         Binder = other.Binder;
         Name = other.Name;
@@ -44,10 +45,4 @@ public abstract class Symbol<TSort> : SymbolBase, ISymbol<TSort>, ISymbol
     /// <inheritdoc/>
     public abstract TSort Sort { get; }
     ISort ISymbol.Sort => Sort;
-
-    /// <inheritdoc/>
-    public override string ToString()
-    {
-        return Binder.AliasNaming.GetAliasName((ISymbol)this);
-    }
 }

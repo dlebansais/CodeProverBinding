@@ -3,7 +3,7 @@
 /// <summary>
 /// Represents a reference symbol.
 /// </summary>
-public class ReferenceSymbol : Symbol<IReferenceSort>, IReferenceSymbol
+public record ReferenceSymbol : Symbol<IReferenceSort>, IReferenceSymbol
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="ReferenceSymbol"/> class.
@@ -34,4 +34,10 @@ public class ReferenceSymbol : Symbol<IReferenceSort>, IReferenceSymbol
 
     /// <inheritdoc/>
     public override IReferenceSort Sort { get => CodeProverBinding.Sort.Reference; }
+
+    /// <inheritdoc/>
+    public override string ToString()
+    {
+        return Binder.AliasNaming.GetAliasName((ISymbol)this);
+    }
 }
